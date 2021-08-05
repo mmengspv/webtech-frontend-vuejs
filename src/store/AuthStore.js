@@ -23,6 +23,11 @@ export default new Vuex.Store({
       state.isLoggedIn = res.success;
       //   console.log(state);
     },
+    logoutSuccess(state) {
+      state.user = "";
+      state.jwt = "";
+      state.isLoggedIn = false;
+    },
   },
   actions: {
     async login({ commit }, { email, password }) {
@@ -32,10 +37,16 @@ export default new Vuex.Store({
       }
       return res;
     },
+    async logout({ commit }) {
+      await AuthService.logout();
+      commit("logoutSuccess");
+    },
     async register({ commit }, { username, email, password }) {
       const res = await AuthService.register({ username, email, password });
-      //   if (res.success) {
-      //   }
+      if (res.success) {
+        commit("loginSuccess", res);
+      }
+      return res;
     },
   },
   modules: {},

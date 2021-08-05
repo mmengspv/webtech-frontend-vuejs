@@ -28,6 +28,9 @@ export default {
       };
     }
   },
+  logout() {
+    localStorage.removeItem(auth_key);
+  },
   async register({ username, email, password }) {
     try {
       const res = await axios.post(`${api_endpoint}/auth/local/register`, {

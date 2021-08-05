@@ -44,6 +44,15 @@ export default {
   methods: {
     async register() {
       const res = await AuthStore.dispatch("register", this.form);
+      if (res.success) {
+        this.$swal(
+          "Register Success",
+          `Welcome ${res.user.username}`,
+          "success"
+        );
+        this.$router.push("/");
+      }
+      this.$swal("Register Failed", res.message, "error");
     },
   },
 };

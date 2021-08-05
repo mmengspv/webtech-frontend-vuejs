@@ -3,10 +3,16 @@ import VueRouter from "vue-router";
 import HomePage from "../views/HomePage.vue";
 import Login from "../views/auth/Login.vue";
 import Register from "../views/auth/Register";
+import Logout from "../views/auth/Logout";
 
 Vue.use(VueRouter);
 
 const routes = [
+  {
+    path: "/logout",
+    name: "Logout",
+    component: Logout,
+  },
   {
     path: "/register",
     name: "Register",
