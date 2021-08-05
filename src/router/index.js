@@ -2,6 +2,9 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import LoginPage from '../views/LoginPage.vue'
 import HomePage from '../views/HomePage.vue'
+import RewardPage from '@/views/reward/View'
+import AddReward from '@/views/reward/Add'
+import EditReward from '@/views/reward/Edit'
 
 Vue.use(VueRouter)
 
@@ -15,6 +18,21 @@ const routes = [
     path: '/homepage',
     name: 'HomePage',
     component: HomePage
+  },
+  {
+    path: '/reward/view',
+    name: 'RewardPage',
+    component: RewardPage
+  },
+  {
+    path: '/reward/add',
+    name: 'AddReward',
+    component: AddReward
+  },
+  {
+    path: '/reward/:id/edit',
+    name: 'EditReward',
+    component: EditReward
   }
 ]
 

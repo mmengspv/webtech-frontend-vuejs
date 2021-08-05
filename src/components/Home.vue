@@ -5,7 +5,7 @@
 
       <b-navbar-nav class="nav-item">
         <b-icon icon="person-fill" class="person-icon middle" ></b-icon>
-        <b-navbar-brand class="username">ชื่อuser</b-navbar-brand>
+        <b-navbar-brand class="username"></b-navbar-brand>
       </b-navbar-nav>
 
       <!-- Right aligned nav items -->
@@ -44,19 +44,16 @@
       </tbody>
     </table>
   </div>
+  
   <div>
     <b-carousel
       id="carousel-fade"
       style="text-shadow: 0px 0px 2px #000"
-      v-model="slide"
       controls
       indicators
-      img-width="1024"
-      img-height="480"
     >
-      <b-carousel-slide
-        caption="First slide"
-        img-src="https://picsum.photos/1024/480/?image=10"
+      <b-carousel-slide img-src="@/assets/logo.png"
+        
       ></b-carousel-slide>
       <b-carousel-slide
         caption="Second Slide"
@@ -74,23 +71,25 @@
     <h3>Point</h3>
   </div>
 </div>
+
 </template>
 
 <script>
+
 export default {
   data() {
       return {
-        slide: 0,
-        sliding: null
+        currentUser: this.$route.params.index
       }
     },
+    props: {
+      
+      index:Number
+    },
+    
     methods: {
-      onSlideStart(slide) {
-        this.sliding = true
-      },
-      onSlideEnd(slide) {
-        this.sliding = false
-      }
+     
+
     }
   
 }

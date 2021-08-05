@@ -3,11 +3,11 @@
     <h1>Welcome</h1>
     <div>
         <label >Username</label>
-        <input type="text">
+        <input type="text" v-model="form.username">
     </div>
     <div>
         <label >Password</label>
-        <input type="password">
+        <input type="password" v-model="form.password">
     </div>
     <div>
         <button @click="next">Login</button>
@@ -17,14 +17,24 @@
 
 <script>
 export default {
+  
+  data(){
+        return{
+            users: [],
+            form:{
+                username:"",
+                password:"",
+            }
+        }
+  },
   methods:{
     next(){
-      this.$router.push('/homePage')
+        this.$router.push("/homepage")
+      }
     }
 
   }
   
-}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
