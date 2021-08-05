@@ -4,7 +4,6 @@ import HomePage from "../views/HomePage.vue";
 import Login from "../views/auth/Login.vue";
 import Register from "../views/auth/Register";
 import Logout from "../views/auth/Logout";
-import LoginPage from "../views/LoginPage.vue";
 import RewardPage from "@/views/reward/View";
 import AddReward from "@/views/reward/Add";
 import EditReward from "@/views/reward/Edit";
@@ -32,11 +31,7 @@ const routes = [
     name: "HomePage",
     component: HomePage,
   },
-  {
-    path: "/homepage",
-    name: "HomePage",
-    component: HomePage,
-  },
+
   {
     path: "/reward/view",
     name: "RewardPage",
