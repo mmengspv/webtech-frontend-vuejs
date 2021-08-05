@@ -19,7 +19,6 @@ Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
 
 Vue.use(VueAxios, axios);
-
 Vue.config.productionTip = false;
 
 new Vue({
