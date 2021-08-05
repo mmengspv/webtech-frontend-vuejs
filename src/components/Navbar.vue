@@ -8,8 +8,17 @@
 
       <!-- Right aligned nav items -->
       <b-navbar-nav class="ml-auto">
-        <b-button variant="dark">
-          <b-icon icon="power" aria-hidden="true"></b-icon> Logout
+        <b-button v-if="!isLoggedIn()" @click="register()" variant="dark">
+          <b-icon icon="power" aria-hidden="true"></b-icon>
+          Register
+        </b-button>
+        <b-button v-if="!isLoggedIn()" @click="login()" variant="dark">
+          <b-icon icon="power" aria-hidden="true"></b-icon>
+          Login
+        </b-button>
+        <b-button v-if="isLoggedIn()" @click="logout()" variant="dark">
+          <b-icon icon="power" aria-hidden="true"></b-icon>
+          Logout
         </b-button>
       </b-navbar-nav>
     </b-navbar>
@@ -17,7 +26,38 @@
 </template>
 
 <script>
-export default {};
+import AuthStore from "../store/AuthStore";
+export default {
+  created() {
+    this.isLoggedIn();
+  },
+  methods: {
+    isLoggedIn() {
+      return AuthStore.getters.isLoggedIn;
+    },
+    login() {
+      this.$router.push("/login");
+    },
+    register() {
+      this.$router.push("/register");
+    },
+    async logout() {
+      this.$swal({
+        title: "Are you sure",
+        text: "you want to logout?",
+        icon: "warning",
+        buttons: true,
+      }).then((willDelete) => {
+        if (willDelete) {
+          swal("Logout ", {
+            icon: "success",
+          });
+          AuthStore.dispatch("logout");
+        }
+      });
+    },
+  },
+};
 </script>
 
 <style>

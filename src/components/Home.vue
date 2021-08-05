@@ -61,19 +61,11 @@ export default {
   props: {
     index: Number,
   },
-
-  methods: {},
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-.ml-auto {
-  margin-left: auto;
-}
-.item {
-  width: 100px;
-}
 .slide {
   margin-top: 250px;
   margin-right: 50px;

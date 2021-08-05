@@ -1,6 +1,5 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import axios from "axios";
 import AuthService from "../services/AuthService";
 
 Vue.use(Vuex);
@@ -16,6 +15,11 @@ const initialState = {
 
 export default new Vuex.Store({
   state: initialState,
+  getters: {
+    user: (state) => state.user,
+    jwt: (state) => state.jwt,
+    isLoggedIn: (state) => state.isLoggedIn,
+  },
   mutations: {
     loginSuccess(state, res) {
       state.user = res.user;

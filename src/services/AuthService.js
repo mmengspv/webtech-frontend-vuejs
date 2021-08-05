@@ -8,6 +8,15 @@ const jwt = auth ? auth.jwt : "";
 const api_endpoint = process.env.VUE_APP_STRAPI_API || "http://localhost:1337";
 
 export default {
+  getUser() {
+    return user;
+  },
+  getJWT() {
+    return jwt;
+  },
+  isLoggedIn() {
+    return user !== "" && jwt !== "" ? true : false;
+  },
   async login({ email, password }) {
     try {
       const res = await axios.post(`${api_endpoint}/auth/local`, {
