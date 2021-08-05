@@ -31,7 +31,6 @@ const routes = [
     name: "HomePage",
     component: HomePage,
   },
-
   {
     path: "/reward/view",
     name: "RewardPage",
