@@ -10,6 +10,7 @@
           <th>Reward ID</th>
           <th>Name</th>
           <th>Exchange Point</th>
+          <th>Details</th>
           <th>Image</th>
           <th>Action</th>
         </tr>
@@ -20,6 +21,7 @@
           <td>{{ reward.id }}</td>
           <td>{{ reward.reward_name }}</td>
           <td>{{ reward.exchange_point }}</td>
+          <td>{{ reward.detail }}</td>
           <td>
             <img
               :src="api_endpoint + reward.image[0].url"
