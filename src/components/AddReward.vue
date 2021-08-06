@@ -49,7 +49,7 @@ export default {
             let res = await RewardApiStore.dispatch("addReward", payload)
             if(res.success){
                this.clearForm()
-               this.$router.push("/reward/view") 
+               this.$router.push("/reward") 
             }else{
                 this.$swal("Add Failed", res.message,"error")
             }

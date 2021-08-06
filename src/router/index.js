@@ -7,6 +7,7 @@ import Logout from "../views/auth/Logout";
 import RewardPage from "@/views/reward/View";
 import AddReward from "@/views/reward/Add";
 import EditReward from "@/views/reward/Edit";
+import Point from "@/views/point/PointTable";
 
 Vue.use(VueRouter);
 
@@ -32,7 +33,12 @@ const routes = [
     component: HomePage,
   },
   {
-    path: "/reward/view",
+    path: "/point",
+    name: "Point",
+    component: Point,
+  },
+  {
+    path: "/reward",
     name: "RewardPage",
     component: RewardPage,
   },

@@ -1,7 +1,7 @@
 <template>
    <div class="reward">
     <h3>Reward</h3>
-    <button @click="addPokemon">add pokemon</button>
+    <button @click="addPokemon">Add Reward</button>
     <table class="reward-table">
       <thead>
         <tr>
@@ -28,8 +28,12 @@
 </template>
 
 <script>
+import Reward from "@/components/Reward.vue"
 import RewardApiStore from '@/store/RewardApi'
 export default {
+    components:{
+      Reward
+    },
     data(){
         return{
             rewards: []
@@ -51,6 +55,20 @@ export default {
     },
 }
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <style>
   .reward h3{
