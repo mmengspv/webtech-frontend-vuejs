@@ -1,7 +1,16 @@
 <template>
   <div>
     <b-navbar toggleable="lg" type="dark" variant="dark">
-      <b-navbar-nav class="nav-item">
+      <div class="collapse navbar-collapse ml-1" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <button type="button" @click="home()" class="btn btn-dark">
+              Home
+            </button>
+          </li>
+        </ul>
+      </div>
+      <b-navbar-nav v-if="isLoggedIn()" class="nav-item">
         <b-icon icon="person-fill" class="person-icon middle"></b-icon>
         <b-navbar-brand class="username"></b-navbar-brand>
       </b-navbar-nav>
@@ -32,6 +41,10 @@ export default {
     this.isLoggedIn();
   },
   methods: {
+    home() {
+      if (window.location.pathname === "/") this.$router.go();
+      else this.$router.push("/");
+    },
     isLoggedIn() {
       return AuthStore.getters.isLoggedIn;
     },
@@ -61,6 +74,9 @@ export default {
 </script>
 
 <style>
+.ml-1 {
+  margin-left: 50px;
+}
 .ml-auto {
   margin-left: auto;
 }

@@ -17,6 +17,16 @@ export default {
   isLoggedIn() {
     return user !== "" && jwt !== "" ? true : false;
   },
+  getHeaders() {
+    if (jwt !== "") {
+      return {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${jwt}`,
+        },
+      };
+    }
+  },
   async login({ email, password }) {
     try {
       const res = await axios.post(`${api_endpoint}/auth/local`, {
