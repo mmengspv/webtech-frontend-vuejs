@@ -1,6 +1,8 @@
 <template>
   <div>
     <navbar></navbar>
+    <router-link to="reward">Reward</router-link> |
+    <router-link to="exchange">Deposit withdraw</router-link>
     <h1>WELCOME!</h1>
     <div class="history">
       <h3>history</h3>

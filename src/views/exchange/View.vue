@@ -1,14 +1,14 @@
 <template>
   <div class="home">
-    <point></point>
+    <exchange></exchange>
   </div>
 </template>
 
 <script>
-import Point from '@/components/Point.vue'
+import Exchange from '@/components/Exchange.vue'
 export default {
   components: {
-    Point
+    Exchange
+    }
   }
-}
 </script>

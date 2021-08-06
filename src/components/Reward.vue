@@ -1,11 +1,12 @@
 <template>
    <div class="reward">
+     <navbar></navbar>
     <h3>Reward</h3>
-    <button @click="addPokemon">Add Reward</button>
+    <button @click="addReward">Add Reward</button>
     <table class="reward-table">
       <thead>
         <tr>
-          <th></th>
+          <th>No.</th>
           <th>Reward ID</th>
           <th>Name</th>
           <th>Exchange Point</th>
@@ -28,13 +29,16 @@
 </template>
 
 <script>
+import Navbar from "./Navbar.vue"
 import Reward from "@/components/Reward.vue"
 import RewardApiStore from '@/store/RewardApi'
 export default {
     components:{
-      Reward
+      Reward,
+      Navbar
     },
-    data(){
+ 
+        data(){
         return{
             rewards: []
         }
@@ -49,25 +53,12 @@ export default {
             this.rewards = RewardApiStore.getters.rewards
             console.log(this.rewards);
         },
-        addPokemon(){
+        addReward(){
             this.$router.push("/reward/add") 
         }
     },
 }
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 <style>
