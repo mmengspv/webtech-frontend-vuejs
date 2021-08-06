@@ -1,7 +1,8 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import axios from "axios";
+import Axios from "axios";
 import AuthService from "../services/AuthService";
+let api_endpoint = process.env.VUE_APP_POKEMON_ENDPOINT || "http://localhost:3000"
 
 Vue.use(Vuex);
 
@@ -15,7 +16,7 @@ const initialState = {
 };
 
 export default new Vuex.Store({
-  state: initialState,
+  state:initialState,
   mutations: {
     loginSuccess(state, res) {
       state.user = res.user;
@@ -28,6 +29,9 @@ export default new Vuex.Store({
       state.jwt = "";
       state.isLoggedIn = false;
     },
+    fetch(state, {res}){
+      state.data = res.data
+  }
   },
   actions: {
     async login({ commit }, { email, password }) {

@@ -5,14 +5,14 @@ const auth = JSON.parse(localStorage.getItem(auth_key));
 const user = auth ? auth.user : "";
 const jwt = auth ? auth.jwt : "";
 
-const api_endpoint = process.env.VUE_APP_STRAPI_API || "http://localhost:1337";
+const api_endpoint = process.env.VUE_APP_STRAPI_API || "http://localhost:3000";
 
 export default {
   async login({ email, password }) {
     try {
       const res = await axios.post(`${api_endpoint}/auth/local`, {
         identifier: email,
-        password,
+        password: password ,
       });
       localStorage.setItem(auth_key, JSON.stringify(res.data));
       return {

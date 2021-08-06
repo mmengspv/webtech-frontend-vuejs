@@ -7,6 +7,7 @@ import Logout from "../views/auth/Logout";
 import RewardPage from "@/views/reward/View";
 import AddReward from "@/views/reward/Add";
 import EditReward from "@/views/reward/Edit";
+import Leaderboard from '@/views/LeaderboardPage'
 
 Vue.use(VueRouter);
 
@@ -47,6 +48,11 @@ const routes = [
     name: "EditReward",
     component: EditReward,
   },
+  {
+    path: '/leaderboard',
+    name: 'Leaderboard',
+    component: Leaderboard
+  }
 ];
 
 const router = new VueRouter({
