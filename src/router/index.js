@@ -7,6 +7,8 @@ import Logout from "../views/auth/Logout";
 import RewardPage from "@/views/reward/View";
 import AddReward from "@/views/reward/Add";
 import EditReward from "@/views/reward/Edit";
+import ExchangeMoney from "@/views/exchange/View";
+import Income from "@/views/exchange/Income";
 
 Vue.use(VueRouter);
 
@@ -32,9 +34,19 @@ const routes = [
     component: HomePage,
   },
   {
-    path: "/reward/view",
+    path: "/reward",
     name: "RewardPage",
     component: RewardPage,
+  },
+  {
+    path: "/exchange",
+    name: "ExchangeMoney",
+    component: ExchangeMoney,
+  },
+  {
+    path: "/exchange/income",
+    name: "Income",
+    component: Income,
   },
   {
     path: "/reward/add",

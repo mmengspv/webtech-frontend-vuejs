@@ -4,7 +4,6 @@
 
 <script>
 import EditReward from '@/components/EditReward'
-
 export default {
     components: {
         EditReward
