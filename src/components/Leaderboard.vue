@@ -1,5 +1,6 @@
 <template>
     <div>
+      <navbar></navbar>
       <h1>Leaderboard</h1>
     <div>
     <div>
@@ -36,8 +37,10 @@
 </template>
 
 <script>
+import Navbar from '../components/Navbar.vue'
 import UserApi from '@/store/UserApi'
 export default {
+  components:{ Navbar },
     data(){
         return{
             users:[],

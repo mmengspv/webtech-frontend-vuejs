@@ -15,7 +15,7 @@
         </thead>
         <tbody>
           <tr v-for="(exchange, index) in exchanges" :key="index">
-            <td> {{ index+1 }}></td>
+            <td> {{ index+1 }} </td>
             <td> {{ exchange.date }} </td>
             <td> {{ exchange.amount }} </td>
             <td> {{ exchange.balance }} </td>

@@ -18,6 +18,11 @@
               Deposit&withdraw
             </button>
           </li>
+          <li v-if="isLoggedIn()" class="nav-item active ml-1">
+            <button type="button" @click="leaderboard()" class="btn btn-dark">
+              Leaderboard
+            </button>
+          </li>
         </ul>
       </div>
       <b-navbar-nav v-if="isLoggedIn()" class="nav-item">
@@ -72,6 +77,10 @@ export default {
     exchange() {
       if (window.location.pathname === "/exchange") this.$router.go();
       else this.$router.push("/exchange");
+    },
+    leaderboard() {
+      if (window.location.pathname === "/leaderboard") this.$router.go();
+      else this.$router.push("/leaderboard");
     },
     isLoggedIn() {
       return AuthStore.getters.isLoggedIn;
