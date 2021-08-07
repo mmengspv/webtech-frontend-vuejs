@@ -60,7 +60,7 @@ export default {
       this.users = UserApi.getters.users;
     },
     random() {
-      if (this.count == 5) {
+      if (this.count >= 5) {
         this.$swal({
           title: "Score Summary",
           text: `${this.lucky_user1} win first prize
@@ -126,17 +126,17 @@ export default {
 .first {
   position: absolute;
   top: 200px;
-  left: 700px;
+  left: 46%;
 }
 .second {
   position: absolute;
   top: 270px;
-  left: 430px;
+  left: 30%;
 }
 .third {
   position: absolute;
   top: 270px;
-  left: 950px;
+  left: 61%;
 }
 .prize {
   margin-top: 150px;
