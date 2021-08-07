@@ -31,9 +31,19 @@
           </td>
           <td v-if="reward.image.length === 0"></td>
           <td>
-            <router-link :to="{ name: 'EditReward', params: { id: reward.id } }"
-              >Edit</router-link
+            <button
+              @click="onEdit(reward.id)"
+              type="button"
+              class="btn btn-success"
             >
+              EDIT
+            </button>
+            <button
+              @click.prevent="onDelete(reward.id)"
+              class="btn btn-danger ml-button"
+            >
+              DELTET
+            </button>
           </td>
         </tr>
       </tbody>
@@ -63,11 +73,33 @@ export default {
     addReward() {
       this.$router.push("/reward/add");
     },
+    onEdit(id) {
+      this.$router.push(`/reward/${id}/edit`);
+    },
+    async onDelete(id) {
+      this.$swal({
+        title: "Are you sure",
+        text: `Do you want to delete reward: ${id}?`,
+        icon: "warning",
+        buttons: true,
+      }).then(async (willDelete) => {
+        if (willDelete) {
+          swal("Delete success ", {
+            icon: "success",
+          });
+          await RewardApiStore.dispatch("deleteReward", id);
+          this.$router.go();
+        }
+      });
+    },
   },
 };
 </script>
 
 <style>
+.ml-button {
+  margin: 10px;
+}
 .reward h3 {
   margin-top: 50px;
 }

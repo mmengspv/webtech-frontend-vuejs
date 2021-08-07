@@ -60,6 +60,20 @@ export default new Vuex.Store({
         };
       }
     },
+    async deleteReward({ commit }, id) {
+      try {
+        const res = await RewardService.deleteRewardById(id);
+        return {
+          success: true,
+          data: res.data,
+        };
+      } catch (e) {
+        return {
+          success: false,
+          message: "Error: " + res.status,
+        };
+      }
+    },
   },
   modules: {},
 });

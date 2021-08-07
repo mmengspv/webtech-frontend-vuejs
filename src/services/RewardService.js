@@ -23,7 +23,6 @@ export default {
   },
   async updateRewardById(payload) {
     const url = api_endpoint + "/rewards/" + payload.id;
-
     const body = {
       reward_name: payload.reward_name,
       exchange_point: payload.exchange_point,
@@ -32,6 +31,12 @@ export default {
     };
     const headers = AuthService.getHeaders();
     const res = await Axios.put(url, body, headers);
+    return res;
+  },
+  async deleteRewardById(id) {
+    const url = api_endpoint + "/rewards/" + id;
+    const headers = AuthService.getHeaders();
+    const res = await Axios.delete(url, headers);
     return res;
   },
 };
