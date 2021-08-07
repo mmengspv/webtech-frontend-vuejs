@@ -1,5 +1,6 @@
 <template>
   <div>
+    <navbar></navbar>
     <h1>find a lucky user</h1>
     <div class="prize">
       <div class="first">
@@ -31,7 +32,9 @@
 <script>
 import UserApi from "@/store/UserApi";
 import ExchangeApi from "@/store/ExchangeApi";
+import Navbar from "../components/Navbar.vue";
 export default {
+  components: { Navbar },
   data() {
     return {
       users: [],
@@ -122,17 +125,17 @@ export default {
 <style scoped>
 .first {
   position: absolute;
-  top: 100px;
+  top: 200px;
   left: 700px;
 }
 .second {
   position: absolute;
-  top: 170px;
+  top: 270px;
   left: 430px;
 }
 .third {
   position: absolute;
-  top: 170px;
+  top: 270px;
   left: 950px;
 }
 .prize {

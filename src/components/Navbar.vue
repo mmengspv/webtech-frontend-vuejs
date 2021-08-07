@@ -23,6 +23,11 @@
               Leaderboard
             </button>
           </li>
+          <li v-if="isLoggedIn()" class="nav-item active ml-1">
+            <button type="button" @click="randomPoint()" class="btn btn-dark">
+              Randompoint
+            </button>
+          </li>
         </ul>
       </div>
       <b-navbar-nav v-if="isLoggedIn()" class="nav-item">
@@ -81,6 +86,10 @@ export default {
     leaderboard() {
       if (window.location.pathname === "/leaderboard") this.$router.go();
       else this.$router.push("/leaderboard");
+    },
+    randomPoint() {
+      if (window.location.pathname === "/randompoint") this.$router.go();
+      else this.$router.push("/randompoint");
     },
     isLoggedIn() {
       return AuthStore.getters.isLoggedIn;
