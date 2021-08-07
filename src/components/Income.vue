@@ -76,7 +76,7 @@ export default {
         formData.append("data", JSON.stringify(data));
         let res = await ExchangeApiStore.dispatch("addExchange", formData);
         if (res.success) {
-            this.$swal("Success!", res.data.amount, "success");
+            this.$swal("Success!", res.data.date, "success");
             this.$router.push("/exchange");
         } else {
             this.$swal("Add Failed", res.message, "error");

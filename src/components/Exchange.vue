@@ -29,16 +29,15 @@
 </template>
 
 <script>
-
-import Navbar from "./Navbar.vue"
 import ExchangeApiStore from "@/store/ExchangeApi"
+import Navbar from "./Navbar.vue"
 export default {
   components: { Navbar },
   data() {
     return{
       exchanges: [],
       api_endpoint: process.env.VUE_APP_STRAPI_API
-    }
+    };
   },
   created(){
     this.fetchExchange()
@@ -47,13 +46,12 @@ export default {
     async fetchExchange(){        
       await ExchangeApiStore.dispatch('fetchExchange')
       this.exchanges = ExchangeApiStore.getters.exchanges
-      console.log(this.exchanges);
   },
   addExchange(){
     this.$router.push("/exchange/income") 
     }
   },
-}
+};
 </script>
 
 <style>

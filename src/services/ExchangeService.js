@@ -7,7 +7,6 @@ export default {
     const headers = AuthService.getHeaders();
     const res = await Axios.post(url, payload, headers);
     return res;
-    // let res = await Axios.post(url, body);
   },
   async getAllExchange() {
     const res = await Axios.get(`${api_endpoint}/exchanges`);
