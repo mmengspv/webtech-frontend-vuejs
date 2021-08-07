@@ -1,6 +1,6 @@
 import Axios from "axios";
 import AuthService from "./AuthService";
-const api_endpoint = process.env.VUE_APP_STRAPI_API || "http://localhost:3000";
+const api_endpoint = process.env.VUE_APP_STRAPI_API || "http://localhost:1337";
 export default {
   async create(payload) {
     const url = api_endpoint + "/rewards";

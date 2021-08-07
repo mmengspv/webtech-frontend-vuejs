@@ -6,7 +6,7 @@
     <table class="reward-table">
       <thead>
         <tr>
-          <th></th>
+          <th>No.</th>
           <th>Reward ID</th>
           <th>Name</th>
           <th>Exchange Point</th>

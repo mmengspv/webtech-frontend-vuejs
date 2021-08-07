@@ -93,7 +93,7 @@ export default {
       let res = await RewardApiStore.dispatch("addReward", formData);
       if (res.success) {
         this.$swal("Success add reward", res.data.reward_name, "success");
-        this.$router.push("/reward/view");
+        this.$router.push("/reward");
       } else {
         this.$swal("Add Failed", res.message, "error");
       }
