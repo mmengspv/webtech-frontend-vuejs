@@ -10,6 +10,7 @@ import EditReward from "@/views/reward/Edit";
 import ExchangeMoney from "@/views/exchange/View";
 import Income from "@/views/exchange/Income";
 import Leaderboard from "@/views/LeaderboardPage";
+import RandomPointPage from "@/views/RandomPointPage";
 
 Vue.use(VueRouter);
 
@@ -63,6 +64,11 @@ const routes = [
     path: "/leaderboard",
     name: "Leaderboard",
     component: Leaderboard,
+  },
+  {
+    path: "/randompoint",
+    name: "RandomPoint",
+    component: RandomPointPage,
   },
 ];
 
