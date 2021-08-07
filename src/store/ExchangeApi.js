@@ -19,10 +19,7 @@ export default new Vuex.Store({
     },
     add(state, { payload }) {
       state.data.push(payload);
-    },
-    edit(state, index, data) {
-      state.data[index] = data;
-    },
+    }
   },
   actions: {
     async fetchExchange({ commit }) {

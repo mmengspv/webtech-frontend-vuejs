@@ -38,7 +38,7 @@ export default {
     return{
       exchanges: [],
       api_endpoint: process.env.VUE_APP_STRAPI_API
-    }
+    };
   },
   created(){
     this.fetchExchange()
