@@ -5,15 +5,14 @@
         <tbody>
           <tr v-for="(reward, index) in rewards" :key="index">
             <div class="card" style="width: 10rem;">
-              <img class="card-img-top" :src="api_endpoint + 
-              reward.image[0].url" 
-              >
-                <div class="card-body">
-                  <h5 class="card-title">{{ reward.reward_name }}</h5>
-                  <p class="card-text">{{ reward.detail}}</p>
-                  <button>Use Point</button>
-                </div>
+              <img class="card-img-top" :src="api_endpoint + reward.image[0].url">
+              <div class="card-body">
+                <h5 class="card-title">{{ reward.reward_name }}</h5>
+                <p class="card-text">{{ reward.detail }}</p>
+                <button>Use Point</button>
+              </div>
             </div>
+
           </tr>
         </tbody>
       </span>
