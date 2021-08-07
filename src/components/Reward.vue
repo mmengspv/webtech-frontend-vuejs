@@ -22,13 +22,14 @@
           <td>{{ reward.reward_name }}</td>
           <td>{{ reward.exchange_point }}</td>
           <td>{{ reward.detail }}</td>
-          <td>
+          <td v-if="reward.image.length !== 0">
             <img
               :src="api_endpoint + reward.image[0].url"
               height="100"
               width="100"
             />
           </td>
+          <td v-if="reward.image.length === 0"></td>
           <td>
             <router-link :to="{ name: 'EditReward', params: { id: reward.id } }"
               >Edit</router-link
