@@ -45,10 +45,15 @@ export default {
     async login() {
       const res = await AuthStore.dispatch("login", this.form);
       if (res.success) {
-        this.$swal("Login Success", `Welcome, ${res.user.username}`, "success");
+        this.$swal(
+          "Login Success",
+          `Welcome, ${res.user.username} `,
+          "success"
+        );
         this.$router.push("/");
+      } else {
+        this.$swal("Login Failed", res.message, "error");
       }
-      this.$swal("Login Failed", res.message, "error");
     },
     isLoggedIn() {
       return AuthStore.getters.isLoggedIn;

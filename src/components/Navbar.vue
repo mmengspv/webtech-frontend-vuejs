@@ -103,7 +103,8 @@ export default {
             icon: "success",
           });
           AuthStore.dispatch("logout");
-          this.$router.push("/");
+          if (window.location.pathname === "/") this.$router.go();
+          else this.$router.push("/");
         }
       });
     },
