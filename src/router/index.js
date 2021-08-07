@@ -9,6 +9,7 @@ import AddReward from "@/views/reward/Add";
 import EditReward from "@/views/reward/Edit";
 import ExchangeMoney from "@/views/exchange/View";
 import Income from "@/views/exchange/Income";
+import Leaderboard from "@/views/LeaderboardPage";
 
 Vue.use(VueRouter);
 
@@ -57,6 +58,11 @@ const routes = [
     path: "/reward/:id/edit",
     name: "EditReward",
     component: EditReward,
+  },
+  {
+    path: "/leaderboard",
+    name: "Leaderboard",
+    component: Leaderboard,
   },
 ];
 

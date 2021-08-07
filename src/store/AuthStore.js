@@ -32,6 +32,9 @@ export default new Vuex.Store({
       state.jwt = "";
       state.isLoggedIn = false;
     },
+    fetch(state, { res }) {
+      state.data = res.data;
+    },
   },
   actions: {
     async login({ commit }, { email, password }) {
