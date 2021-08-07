@@ -110,10 +110,10 @@ export default {
       let payload = {
         type: "earn",
         point: this.pointEarn,
-        user_id: this.id,
+        users: this.id,
       };
       // console.log(this.point);
-      let res = await ExchangeApi.dispatch("addExchange", payload);
+      let res = await ExchangeApi.dispatch("earnExchange", payload);
     },
   },
 };

@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import ExchangeService from "../services/ExchangeService";
+import axios from "axios";
 
 let api_endpoint = process.env.VUE_APP_STRAPI_API || "http://localhost:1337";
 
@@ -41,6 +42,23 @@ export default new Vuex.Store({
         };
       }
     },
+    async earnExchange({ commit }, payload) {
+      console.log(payload);
+      const res = await ExchangeService.create(payload);
+      if (res.status === 200) {
+        commit("add", res.data);
+        return {
+          success: true,
+          data: res.data,
+        };
+      } else {
+        return {
+          success: false,
+          message: "Error: " + res.status,
+        };
+      }
+    },
   },
+
   modules: {},
 });
