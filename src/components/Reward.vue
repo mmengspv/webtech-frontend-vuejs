@@ -59,7 +59,6 @@ export default {
     async fetchReward() {
       await RewardApiStore.dispatch("fetchReward");
       this.rewards = RewardApiStore.getters.rewards;
-      console.log(this.rewards);
     },
     addReward() {
       this.$router.push("/reward/add");

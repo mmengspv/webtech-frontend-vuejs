@@ -41,7 +41,7 @@ export default {
       api_endpoint: process.env.VUE_APP_STRAPI_API || "http://localhost:1337",
       id: "",
       newImage: null,
-      newImageId: "",
+      newImageId: null,
       form: {
         reward_name: "",
         exchange_point: "",
@@ -64,30 +64,28 @@ export default {
       this.form.exchange_point = reward.exchange_point;
       this.form.detail = reward.detail;
       this.form.image = reward.image[0];
-      console.log("form", this.form);
     },
     async editReward() {
       if (this.newImage) {
+        console.log("do upload image");
         await this.uploadImage();
       }
-      console.log("imageId", this.newImageId);
       const payload = {
         id: this.id,
         reward_name: this.form.reward_name,
         exchange_point: this.form.exchange_point,
         detail: this.form.detail,
-        image_id: this.newImageId,
+        image_id: this.newImageId ? this.newImageId : this.form.image.id,
       };
-      console.log("payload", payload);
       const res = await RewardApiStore.dispatch("editReward", payload);
-      // console.log(res.data.id);
+
       if (res.success) {
         this.$swal(
           "Edit Success",
           `${res.data.id}: ${res.data.reward_name}`,
           "success"
         );
-        this.$router.push("/reward/view");
+        this.$router.push("/reward");
       } else {
         this.$swal("Edit Failed", res.message, "error");
       }

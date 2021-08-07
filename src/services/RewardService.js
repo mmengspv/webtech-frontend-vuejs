@@ -23,7 +23,7 @@ export default {
   },
   async updateRewardById(payload) {
     const url = api_endpoint + "/rewards/" + payload.id;
-    console.log("payload", payload);
+
     const body = {
       reward_name: payload.reward_name,
       exchange_point: payload.exchange_point,
