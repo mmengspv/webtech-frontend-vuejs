@@ -8,6 +8,16 @@
               Home
             </button>
           </li>
+          <li v-if="isLoggedIn()" class="nav-item active ml-2">
+            <button type="button" @click="reward()" class="btn btn-dark">
+              Reward
+            </button>
+          </li>
+          <li v-if="isLoggedIn()" class="nav-item active ml-1">
+            <button type="button" @click="exchange()" class="btn btn-dark">
+              Deposit&withdraw
+            </button>
+          </li>
         </ul>
       </div>
       <b-navbar-nav v-if="isLoggedIn()" class="nav-item">
@@ -21,11 +31,21 @@
           <b-icon icon="power" aria-hidden="true"></b-icon>
           Register
         </b-button>
-        <b-button v-if="!isLoggedIn()" @click="login()" variant="dark">
+        <b-button
+          class="mr-1"
+          v-if="!isLoggedIn()"
+          @click="login()"
+          variant="dark"
+        >
           <b-icon icon="power" aria-hidden="true"></b-icon>
           Login
         </b-button>
-        <b-button v-if="isLoggedIn()" @click="logout()" variant="dark">
+        <b-button
+          class="mr-1"
+          v-if="isLoggedIn()"
+          @click="logout()"
+          variant="dark"
+        >
           <b-icon icon="power" aria-hidden="true"></b-icon>
           Logout
         </b-button>
@@ -44,6 +64,14 @@ export default {
     home() {
       if (window.location.pathname === "/") this.$router.go();
       else this.$router.push("/");
+    },
+    reward() {
+      if (window.location.pathname === "/reward") this.$router.go();
+      else this.$router.push("/reward");
+    },
+    exchange() {
+      if (window.location.pathname === "/exchange") this.$router.go();
+      else this.$router.push("/exchange");
     },
     isLoggedIn() {
       return AuthStore.getters.isLoggedIn;
@@ -77,8 +105,14 @@ export default {
 .ml-1 {
   margin-left: 50px;
 }
+.ml-2 {
+  margin-left: 120px;
+}
 .ml-auto {
   margin-left: auto;
+}
+.mr-1 {
+  margin-right: 20px;
 }
 .item {
   width: 100px;

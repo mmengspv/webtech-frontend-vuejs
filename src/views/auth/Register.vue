@@ -41,6 +41,12 @@ export default {
       },
     };
   },
+  mounted() {
+    if (this.isLoggedIn()) {
+      this.$swal("Register", "Please logout before register", "warning");
+      this.$router.push("/");
+    }
+  },
   methods: {
     async register() {
       const res = await AuthStore.dispatch("register", this.form);
@@ -53,6 +59,9 @@ export default {
         this.$router.push("/");
       }
       this.$swal("Register Failed", res.message, "error");
+    },
+    isLoggedIn() {
+      return AuthStore.getters.isLoggedIn;
     },
   },
 };

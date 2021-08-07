@@ -35,6 +35,12 @@ export default {
       },
     };
   },
+  mounted() {
+    if (this.isLoggedIn()) {
+      this.$swal("Login", "you already login", "warning");
+      this.$router.push("/");
+    }
+  },
   methods: {
     async login() {
       const res = await AuthStore.dispatch("login", this.form);
@@ -43,6 +49,9 @@ export default {
         this.$router.push("/");
       }
       this.$swal("Login Failed", res.message, "error");
+    },
+    isLoggedIn() {
+      return AuthStore.getters.isLoggedIn;
     },
   },
 };

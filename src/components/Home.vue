@@ -1,52 +1,52 @@
 <template>
   <div>
     <navbar></navbar>
-    <router-link to="reward">Reward</router-link> |
-    <router-link to="exchange">Deposit withdraw</router-link>
-    <h1>WELCOME!</h1>
-    <div class="history">
-      <h3>history</h3>
-      <table class="history-table">
-        <thead>
-          <tr>
-            <th></th>
-            <th>date</th>
-            <th>Point</th>
-            <th>Reward</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>ไม่ระบุ</td>
-            <td>ไม่ระบุ</td>
-            <td>ไม่ระบุ</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <div class="pt-1">
+      <h1>WELCOME!</h1>
+      <div class="history">
+        <h3>history</h3>
+        <table class="history-table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>date</th>
+              <th>Point</th>
+              <th>Reward</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>ไม่ระบุ</td>
+              <td>ไม่ระบุ</td>
+              <td>ไม่ระบุ</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
-    <div>
-      <b-carousel
-        id="carousel-fade"
-        style="text-shadow: 0px 0px 2px #000"
-        controls
-        indicators
-      >
-        <b-carousel-slide img-src="@/assets/logo.png"></b-carousel-slide>
-        <b-carousel-slide
-          caption="Second Slide"
-          img-src="https://picsum.photos/1024/480/?image=12"
-        ></b-carousel-slide>
-        <b-carousel-slide
-          caption="Third Slide"
-          img-src="https://picsum.photos/1024/480/?image=22"
-        ></b-carousel-slide>
-      </b-carousel>
-    </div>
-    <div class="point">
-      <h3>1</h3>
-      <h3>Point</h3>
+      <div>
+        <b-carousel
+          id="carousel-fade"
+          style="text-shadow: 0px 0px 2px #000"
+          controls
+          indicators
+        >
+          <b-carousel-slide img-src="@/assets/logo.png"></b-carousel-slide>
+          <b-carousel-slide
+            caption="Second Slide"
+            img-src="https://picsum.photos/1024/480/?image=12"
+          ></b-carousel-slide>
+          <b-carousel-slide
+            caption="Third Slide"
+            img-src="https://picsum.photos/1024/480/?image=22"
+          ></b-carousel-slide>
+        </b-carousel>
+      </div>
+      <div class="point">
+        <h3>1</h3>
+        <h3>Point</h3>
+      </div>
     </div>
   </div>
 </template>
@@ -68,6 +68,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+.pt-1 {
+  padding-top: 40px;
+}
 .slide {
   margin-top: 250px;
   margin-right: 50px;
