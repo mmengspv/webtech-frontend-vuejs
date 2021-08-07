@@ -1,7 +1,7 @@
 <template>
    <div class="reward">
     <h3>Reward</h3>
-    <button @click="addPokemon">add pokemon</button>
+    <button @click="addReward">add reward</button>
     <table class="reward-table">
       <thead>
         <tr>
@@ -45,7 +45,7 @@ export default {
             this.rewards = RewardApiStore.getters.rewards
             console.log(this.rewards);
         },
-        addPokemon(){
+        addReward(){
             this.$router.push("/reward/add") 
         }
     },

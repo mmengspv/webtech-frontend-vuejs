@@ -50,7 +50,6 @@ export default {
     created(){
         this.fetchUser()
     },
-    // Date.parse(u.date) > Date.parse(this.date.start) && Date.parse(u.date) < Date.parse(this.date.end)
     methods:{
         async fetchUser(){
             await UserApi.dispatch('fetchUser')
@@ -65,13 +64,8 @@ export default {
           }else{
             start = Date.parse(this.date.start)
           }
-          // if(this.date.end == ''){
-          //   end =0
-          // }else{
-          //   end = Date.parse(this.date.end)
-          // }
           let sum =0
-          const tmp = user.transactions.map(u => {
+          const tmp = user.exchanges.map(u => {
             if(u.type === type && Date.parse(u.date)>= start  && (this.date.end == '' || ( this.date.end != '' &&  Date.parse(this.date.end)>= Date.parse(u.date) ))){
               console.log(Date.parse(u.date));
               console.log(start);

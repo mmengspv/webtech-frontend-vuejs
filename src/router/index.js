@@ -8,6 +8,7 @@ import RewardPage from "@/views/reward/View";
 import AddReward from "@/views/reward/Add";
 import EditReward from "@/views/reward/Edit";
 import Leaderboard from '@/views/LeaderboardPage'
+import RandomPointPage from '@/views/RandomPointPage'
 
 Vue.use(VueRouter);
 
@@ -52,6 +53,11 @@ const routes = [
     path: '/leaderboard',
     name: 'Leaderboard',
     component: Leaderboard
+  },
+  {
+    path: '/randompoint',
+    name: 'RandomPoint',
+    component: RandomPointPage
   }
 ];
 

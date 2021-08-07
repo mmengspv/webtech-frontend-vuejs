@@ -5,7 +5,7 @@ import store from "./store";
 import axios from "axios";
 import VueAxios from "vue-axios";
 import VueSwal from "vue-swal";
-
+import wheelpicker from 'vue2-wheel-picker'
 import { BootstrapVue, IconsPlugin } from "bootstrap-vue";
 
 // Import Bootstrap an BootstrapVue CSS files (order is important)
@@ -17,7 +17,7 @@ Vue.use(VueSwal);
 Vue.use(BootstrapVue);
 // Optionally install the BootstrapVue icon components plugin
 Vue.use(IconsPlugin);
-
+Vue.use(wheelpicker)
 Vue.use(VueAxios, axios);
 Vue.config.productionTip = false;
 
