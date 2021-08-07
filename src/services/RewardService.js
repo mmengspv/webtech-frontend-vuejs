@@ -27,6 +27,7 @@ export default {
       reward_name: payload.reward_name,
       exchange_point: payload.exchange_point,
       detail: payload.detail,
+      amount: payload.amount,
       image: payload.image_id,
     };
     const headers = AuthService.getHeaders();

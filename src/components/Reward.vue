@@ -10,7 +10,8 @@
           <th>Reward ID</th>
           <th>Name</th>
           <th>Exchange Point</th>
-          <th>Details</th>
+          <th>Detail</th>
+          <th>Amount</th>
           <th>Image</th>
           <th>Action</th>
         </tr>
@@ -22,6 +23,7 @@
           <td>{{ reward.reward_name }}</td>
           <td>{{ reward.exchange_point }}</td>
           <td>{{ reward.detail }}</td>
+          <td>{{ reward.amount }}</td>
           <td v-if="reward.image.length !== 0">
             <img
               :src="api_endpoint + reward.image[0].url"

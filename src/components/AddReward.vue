@@ -31,6 +31,16 @@
         />
       </div>
       <div>
+        <label for="amount">Amount</label>
+        <input
+          type="number"
+          v-model="form.amount"
+          name="amount"
+          min="0"
+          autocomplete="off"
+        />
+      </div>
+      <div>
         <label for="img">Select image:</label>
         <input type="file" name="image" />
       </div>
@@ -52,6 +62,7 @@ export default {
         reward_name: "",
         exchange_point: "",
         detail: "",
+        amount: 0,
         image: "",
       },
     };
@@ -63,6 +74,7 @@ export default {
         reward_name: "",
         exchange_point: "",
         detail: "",
+        amount: 0,
         image: "",
       };
     },

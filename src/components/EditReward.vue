@@ -14,6 +14,15 @@
         <label for="detail">Detail</label>
         <input type="text" v-model="form.detail" autocomplete="off" />
       </div>
+      <div>
+        <label for="amount">Amount</label>
+        <input
+          type="number"
+          min="0"
+          v-model="form.amount"
+          ฟautocomplete="off"
+        />
+      </div>
       <div v-if="this.form.image !== undefined">
         <img
           :src="api_endpoint + this.form.image.url"
@@ -46,6 +55,7 @@ export default {
         reward_name: "",
         exchange_point: "",
         detail: "",
+        amount: 0,
         image: [],
       },
     };
@@ -63,6 +73,7 @@ export default {
       this.form.reward_name = reward.reward_name;
       this.form.exchange_point = reward.exchange_point;
       this.form.detail = reward.detail;
+      this.form.amount = reward.amount;
       this.form.image = reward.image[0];
     },
     async editReward() {
@@ -75,6 +86,7 @@ export default {
         reward_name: this.form.reward_name,
         exchange_point: this.form.exchange_point,
         detail: this.form.detail,
+        amount: this.form.amount,
         image_id: this.newImageId ? this.newImageId : this.form.image.id,
       };
       const res = await RewardApiStore.dispatch("editReward", payload);
