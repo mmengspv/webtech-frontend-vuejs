@@ -35,7 +35,7 @@ export default {
                 balance:"",
                 point:"",
             }   
-        }
+        };
     },
     methods:{
         clearForm(){
