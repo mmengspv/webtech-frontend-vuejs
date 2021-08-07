@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="pb-1">
     <b-navbar toggleable="lg" type="dark" variant="dark">
       <div class="collapse navbar-collapse ml-1" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
@@ -103,6 +103,7 @@ export default {
             icon: "success",
           });
           AuthStore.dispatch("logout");
+          this.$router.push("/");
         }
       });
     },
@@ -111,6 +112,9 @@ export default {
 </script>
 
 <style>
+.pb-1 {
+  margin-bottom: 40px;
+}
 .ml-1 {
   margin-left: 50px;
 }

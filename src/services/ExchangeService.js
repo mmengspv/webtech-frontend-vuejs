@@ -9,7 +9,8 @@ export default {
     return res;
   },
   async getAllExchange() {
-    const res = await Axios.get(`${api_endpoint}/exchanges`);
+    const headers = AuthService.getHeaders();
+    const res = await Axios.get(`${api_endpoint}/exchanges`, headers);
     return res;
   },
 };

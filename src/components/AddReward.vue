@@ -1,5 +1,7 @@
 <template>
   <div>
+    <navbar></navbar>
+    <h1>Add Reward</h1>
     <form @submit.prevent="addReward">
       <div>
         <label for="reward_name">Reward Name</label>
@@ -41,7 +43,9 @@
 
 <script>
 import RewardApiStore from "@/store/RewardApi";
+import Navbar from "./Navbar.vue";
 export default {
+  components: { Navbar },
   data() {
     return {
       form: {
