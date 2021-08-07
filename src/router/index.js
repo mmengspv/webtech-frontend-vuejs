@@ -10,6 +10,8 @@ import EditReward from "@/views/reward/Edit";
 import ExchangeMoney from "@/views/exchange/View";
 import Income from "@/views/exchange/Income";
 import Leaderboard from "@/views/LeaderboardPage";
+import History from "@/views/used/View";
+import Trade from "@/views/used/Trade";
 
 Vue.use(VueRouter);
 
@@ -59,6 +61,17 @@ const routes = [
     name: "EditReward",
     component: EditReward,
   },
+  {
+    path: "/used",
+    name: "History",
+    component: History,
+  },
+  {
+    path: "/used/trade",
+    name: "Trade",
+    component: Trade,
+  },
+  
   {
     path: "/leaderboard",
     name: "Leaderboard",
