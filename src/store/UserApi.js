@@ -26,6 +26,11 @@ export default new Vuex.Store({
       let res = await Axios.get(api_endpoint + "/users", headers);
       commit("fetch", { res });
     },
+    async fetchUserById({ commit }, id) {
+      const headers = AuthService.getHeaders();
+      const res = await Axios.get(api_endpoint + `/users/${id}`, headers);
+      commit("fetch", { res });
+    },
     async editPoint({ commit }, payload) {
       let url = api_endpoint + "/users/" + payload.index;
       let body = {
