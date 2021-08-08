@@ -53,12 +53,13 @@ export default {
       if (res.success) {
         this.$swal(
           "Register Success",
-          `Welcome ${res.user.username}`,
+          `Welcome, ${res.user.username} `,
           "success"
         );
         this.$router.push("/");
+      } else {
+        this.$swal("Register Failed", res.message, "error");
       }
-      this.$swal("Register Failed", res.message, "error");
     },
     isLoggedIn() {
       return AuthStore.getters.isLoggedIn;
