@@ -1,7 +1,7 @@
 <template>
   <div class="pb-1">
     <b-navbar toggleable="lg" type="dark" variant="dark">
-      <div class="collapse navbar-collapse ml-1" id="navbarSupportedContent">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
             <button type="button" @click="home()" class="btn btn-dark">
@@ -13,17 +13,17 @@
               Reward
             </button>
           </li>
-          <li v-if="isLoggedIn()" class="nav-item active ml-1">
+          <li v-if="isLoggedIn()" class="nav-item active">
             <button type="button" @click="exchange()" class="btn btn-dark">
               Deposit&withdraw
             </button>
           </li>
-          <li v-if="isLoggedIn()" class="nav-item active ml-1">
+          <li v-if="isLoggedIn()" class="nav-item active">
             <button type="button" @click="leaderboard()" class="btn btn-dark">
               Leaderboard
             </button>
           </li>
-          <li v-if="isLoggedIn()" class="nav-item active ml-1">
+          <li v-if="isLoggedIn()" class="nav-item active">
             <button type="button" @click="randomPoint()" class="btn btn-dark">
               Randompoint
             </button>
@@ -121,13 +121,11 @@ export default {
 };
 </script>
 
-<style>
+<style >
 .pb-1 {
   margin-bottom: 40px;
 }
-.ml-1 {
-  margin-left: 50px;
-}
+
 .ml-2 {
   margin-left: 120px;
 }
