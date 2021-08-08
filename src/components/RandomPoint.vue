@@ -31,7 +31,7 @@
 
 <script>
 import UserApi from "@/store/UserApi";
-import ExchangeApi from "@/store/ExchangeApi";
+import PointApi from "@/store/PointApi";
 import Navbar from "../components/Navbar.vue";
 export default {
   components: { Navbar },
@@ -94,7 +94,7 @@ export default {
         }
         this.point = lucky.point + this.pointEarn;
         this.editPoint();
-        this.addExchange();
+        this.addPoint();
       }
       this.count += 1;
     },
@@ -109,14 +109,14 @@ export default {
         this.$swal("Add Failed", res.message, "error");
       }
     },
-    async addExchange() {
+    async addPoint() {
       let payload = {
         type: "earn",
         point: this.pointEarn,
-        users: this.id,
+        user: this.id,
       };
       // console.log(this.point);
-      let res = await ExchangeApi.dispatch("earnExchange", payload);
+      let res = await PointApi.dispatch("addPoint", payload);
     },
   },
 };
