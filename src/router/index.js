@@ -13,6 +13,7 @@ import Leaderboard from "@/views/LeaderboardPage";
 import RandomPointPage from "@/views/RandomPointPage";
 import History from "@/views/used/View";
 import Trade from "@/views/used/Trade";
+import Withdraw from "../views/exchange/Withdraw";
 
 Vue.use(VueRouter);
 
@@ -51,6 +52,11 @@ const routes = [
     path: "/exchange/income",
     name: "Income",
     component: Income,
+  },
+  {
+    path: "/exchange/withdraw",
+    name: "Withdraw",
+    component: Withdraw,
   },
   {
     path: "/reward/add",

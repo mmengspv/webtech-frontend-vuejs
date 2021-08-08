@@ -13,8 +13,8 @@
           <th>No.</th>
           <th v-if="user.role['type'] === 'admin'">Username</th>
           <th>Date</th>
-          <th>Amount</th>
           <th>Type</th>
+          <th>Amount</th>
         </tr>
       </thead>
       <tbody>
@@ -24,8 +24,13 @@
             {{ exchange.users.username }}
           </td>
           <td>{{ exchange.date }}</td>
+          <td v-if="exchange.type === 'deposit'" class="depo">
+            {{ exchange.type }}
+          </td>
+          <td v-if="exchange.type === 'withdraw'" class="wd">
+            {{ exchange.type }}
+          </td>
           <td>{{ exchange.amount }}</td>
-          <td>{{ exchange.type }}</td>
         </tr>
       </tbody>
     </table>
@@ -82,6 +87,12 @@ export default {
 </script>
 
 <style>
+.depo {
+  background-color: rgb(125, 248, 76);
+}
+.wd {
+  background-color: rgb(255, 0, 0);
+}
 .exchange h3 {
   margin-top: 50px;
 }
