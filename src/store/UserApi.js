@@ -31,6 +31,12 @@ export default new Vuex.Store({
       const res = await Axios.get(api_endpoint + `/users/${id}`, headers);
       commit("fetch", { res });
     },
+    async updatePoint({ commit }, payload) {
+      const headers = AuthService.getHeaders();
+      const url = api_endpoint + "/users/" + payload.index;
+      await Axios.put(url, payload, headers);
+      commit("edit", { payload });
+    },
     async editPoint({ commit }, payload) {
       let url = api_endpoint + "/users/" + payload.index;
       let body = {

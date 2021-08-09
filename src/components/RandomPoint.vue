@@ -1,7 +1,7 @@
 <template>
   <div>
     <navbar></navbar>
-    <h1>find a lucky user</h1>
+    <h1>Find a lucky user</h1>
     <div class="prize">
       <div class="first">
         <h3>first prize</h3>

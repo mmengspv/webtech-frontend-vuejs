@@ -1,21 +1,19 @@
 <template>
   <div>
-      <history></history>
+    <history></history>
   </div>
 </template>
 
 <script>
-
-import History from "@/components/History.vue"
+import History from "@/components/History.vue";
 export default {
-components:{
-    History
-    },
-}
+  components: {
+    History,
+  },
+};
 </script>
 
 
 
 <style>
-
 </style>

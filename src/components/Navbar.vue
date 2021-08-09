@@ -24,6 +24,11 @@
             </button>
           </li>
           <li v-if="isLoggedIn()" class="nav-item active">
+            <button type="button" @click="tradepoint()" class="btn btn-dark">
+              Trade point
+            </button>
+          </li>
+          <li v-if="isLoggedIn()" class="nav-item active">
             <button type="button" @click="leaderboard()" class="btn btn-dark">
               Leaderboard
             </button>
@@ -87,6 +92,10 @@ export default {
     exchange() {
       if (window.location.pathname === "/exchange") this.$router.go();
       else this.$router.push("/exchange");
+    },
+    tradepoint() {
+      if (window.location.pathname === "/used/trade") this.$router.go();
+      else this.$router.push("/used/trade");
     },
     leaderboard() {
       if (window.location.pathname === "/leaderboard") this.$router.go();

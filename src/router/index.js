@@ -84,7 +84,6 @@ const routes = [
     name: "Trade",
     component: Trade,
   },
-
   {
     path: "/leaderboard",
     name: "Leaderboard",

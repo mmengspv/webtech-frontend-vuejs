@@ -1,16 +1,15 @@
 <template>
-    <trade-point></trade-point>
+  <trade-point></trade-point>
 </template>
 
 <script>
-import TradePoint from "@/components/TradePoint.vue"
+import TradePoint from "@/components/TradePoint.vue";
 export default {
-    components: {
-        TradePoint
-    }
-}
+  components: {
+    TradePoint,
+  },
+};
 </script>
 
 <style>
-
 </style>
