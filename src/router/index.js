@@ -14,6 +14,7 @@ import RandomPointPage from "@/views/RandomPointPage";
 import History from "@/views/used/View";
 import Trade from "@/views/used/Trade";
 import Withdraw from "../views/exchange/Withdraw";
+import Approve from "../views/exchange/Approve";
 
 Vue.use(VueRouter);
 
@@ -57,6 +58,11 @@ const routes = [
     path: "/exchange/withdraw",
     name: "Withdraw",
     component: Withdraw,
+  },
+  {
+    path: "/approve",
+    name: "Approve",
+    component: Approve,
   },
   {
     path: "/reward/add",

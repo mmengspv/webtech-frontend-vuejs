@@ -42,8 +42,15 @@ export default new Vuex.Store({
         };
       }
     },
+    async updateExchange({ commit }, payload) {
+      try {
+        const res = await ExchangeService.updateExchange(payload);
+        return { success: true, data: res.data };
+      } catch (e) {
+        return { success: false, message: "Error: " + res.status };
+      }
+    },
     async earnExchange({ commit }, payload) {
-      console.log(payload);
       const res = await ExchangeService.create(payload);
       if (res.status === 200) {
         commit("add", res.data);

@@ -20,4 +20,13 @@ export default {
     const res = await Axios.get(`${api_endpoint}/exchanges`, headers);
     return res;
   },
+  async updateExchange(payload) {
+    const headers = AuthService.getHeaders();
+    const res = await Axios.put(
+      `${api_endpoint}/exchanges/${payload.id}`,
+      payload,
+      headers
+    );
+    return res;
+  },
 };

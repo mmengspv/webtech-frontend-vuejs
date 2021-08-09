@@ -94,7 +94,7 @@ export default {
   background-color: rgb(125, 248, 76);
 }
 .wd {
-  background-color: rgb(255, 0, 0);
+  background-color: rgb(236, 6, 6);
 }
 .exchange h3 {
   margin-top: 50px;
