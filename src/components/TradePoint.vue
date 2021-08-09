@@ -29,6 +29,7 @@ import AuthStore from "@/store/AuthStore";
 import UserApi from "@/store/UserApi";
 import UserService from "@/services/UserService";
 import PointApi from "@/store/PointApi";
+
 export default {
   components: {
     Navbar,
@@ -67,6 +68,7 @@ export default {
             point: reward.exchange_point,
             date: today,
             user: this.user_id,
+            reward: reward.id
           };
           // console.log(this.point);
           await PointApi.dispatch("addPoint", payload_point);

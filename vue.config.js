@@ -12,7 +12,7 @@ module.exports = {
             'b-img-lazy': ['src', 'blank-src'],
             'b-card': 'img-src',
             'b-card-img': 'img-src',
-            'b-carousel-slide': 'img-src',
+            'b-carousel-slide': 'src',
             'b-embed': 'src'
           };
   

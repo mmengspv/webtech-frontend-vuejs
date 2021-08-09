@@ -8,18 +8,25 @@
         <tr>
           <th>No.</th>
           <th>Date</th>
-          <th>Reward</th>
-          <th>Details</th>
-          <th>Point Used</th>
+          <th>Type</th>
+          <th>Amount</th>
+          <th>Reward Name</th>
+          <th>Reward Image</th>
         </tr>
       </thead>
       <tbody>
-        <tr></tr>
-        <td>1</td>
-        <td>05-08-2021</td>
-        <td>Cake</td>
-        <td>Dessert</td>
-        <td>10</td>
+        <tr v-for="(tran, index) in transactions" :key="index">
+          <td>{{ index + 1 }}</td>
+          <td>{{ convertDate(tran.date) }}</td>
+          <td>{{ tran.type}}</td>
+          <td>{{ tran.point }}</td>
+          <td>{{ rewardName(tran) }}</td>
+          <img
+            class="card-img-top"
+            :src= "rewardImg(tran)"
+            height="200px"
+          />
+        </tr>
       </tbody>
     </table>
   </div>
@@ -27,13 +34,43 @@
 
 <script>
 import Navbar from "../components/Navbar.vue";
+import AuthStore from '@/store/AuthStore'
+import RewardService from '@/services/RewardService'
+import moment from "moment";
 export default {
   components: {
     Navbar,
   },
+  data() {
+    return {
+      transactions:[],
+      api_endpoint: process.env.VUE_APP_STRAPI_API,
+    };
+  },
+  created(){
+    this.getUserTransaction()
+  },
   methods: {
     pointUsed() {
       this.$router.push("/used/Trade");
+    },
+    getUserTransaction(){
+      this.transactions = AuthStore.getters.user.transaction_point;
+    },
+    async rewardName(transaction){
+
+      const a =await RewardService.getRewardById(transaction.reward)
+      // console.log(a.reward_name);
+      return a.reward_name
+    },
+    async rewardImg(transaction){
+      const a =await RewardService.getRewardById(transaction.reward)
+      // console.log(a);
+      return this.api_endpoint + a.image[0].url
+    },
+    convertDate(date) {
+      const newDate = moment(date).format("YYYY-MM-DD h:mm:ss a");
+      return newDate;
     },
   },
 };

@@ -31,21 +31,18 @@
           style="text-shadow: 0px 0px 2px #000"
           controls
           indicators
-        >
-          <b-carousel-slide img-src="@/assets/logo.png"></b-carousel-slide>
-          <b-carousel-slide
-            caption="Second Slide"
-            img-src="https://picsum.photos/1024/480/?image=12"
-          ></b-carousel-slide>
-          <b-carousel-slide
-            caption="Third Slide"
-            img-src="https://picsum.photos/1024/480/?image=22"
-          ></b-carousel-slide>
+        > 
+          <b-carousel-slide v-for="(img, index) in imgurl" :key="index">
+            <template #img>
+              <img :src="api_endpoint + img" class="card-img-top" height="200px"/>     
+            </template>
+          </b-carousel-slide>
         </b-carousel>
       </div>
-      <div class="point">
-        <h3>1</h3>
-        <h3>Point</h3>
+      <div class="point" >
+        <h3>Point:</h3>
+        <h3 v-if="islogin()">{{ userpoint}}</h3>
+        <h3 v-if="!islogin()"> Please login or register</h3>
       </div>
     </div>
   </div>
@@ -53,17 +50,49 @@
 
 <script>
 import Navbar from "./Navbar.vue";
+import RewardApiStore from '@/store/RewardApi'
+import AuthStore from '@/store/AuthStore'
+import UserApi from '@/store/UserApi'
 export default {
   components: { Navbar },
   data() {
     return {
       currentUser: this.$route.params.index,
+      api_endpoint: process.env.VUE_APP_STRAPI_API,
+      imgurl:[],
+      userpoint:'',
+      users:[],
     };
   },
   props: {
     index: Number,
   },
-};
+  created(){
+    this.fetchData()
+    this.board()
+  },
+  methods:{
+    async fetchData() {
+      if(this.islogin()){
+        this.userpoint =  AuthStore.getters.user.point;
+      }
+      await UserApi.dispatch("fetchUser");
+      this.users = UserApi.getters.users 
+      await RewardApiStore.dispatch("fetchReward");
+      const rewards = RewardApiStore.getters.rewards;
+      for(let i =0;i<rewards.length && i<4;i++){
+        this.imgurl.push(rewards[i].image[0].url)
+      }
+    },
+    islogin(){
+      return AuthStore.getters.isLoggedIn
+    },
+
+  },
+
+
+}
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
