@@ -68,7 +68,7 @@ export default {
         start = Date.parse(this.date.start);
       }
       let sum = 0;
-      const tmp = user.exchanges.map((u) => {
+      const tmp = user.transaction_point.map((u) => {
         if (
           u.type === type &&
           Date.parse(u.date) >= start &&
