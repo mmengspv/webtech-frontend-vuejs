@@ -5,8 +5,11 @@ import store from "./store";
 import axios from "axios";
 import VueAxios from "vue-axios";
 import VueSwal from "vue-swal";
-import wheelpicker from 'vue2-wheel-picker'
+import wheelpicker from "vue2-wheel-picker";
 import { BootstrapVue, IconsPlugin } from "bootstrap-vue";
+import moment from "moment";
+
+Vue.prototype.moment = moment;
 
 // Import Bootstrap an BootstrapVue CSS files (order is important)
 import "bootstrap/dist/css/bootstrap.css";
@@ -17,7 +20,7 @@ Vue.use(VueSwal);
 Vue.use(BootstrapVue);
 // Optionally install the BootstrapVue icon components plugin
 Vue.use(IconsPlugin);
-Vue.use(wheelpicker)
+Vue.use(wheelpicker);
 Vue.use(VueAxios, axios);
 Vue.config.productionTip = false;
 

@@ -24,7 +24,7 @@
           <td v-if="user.role['type'] === 'admin'">
             {{ exchange.users.username }}
           </td>
-          <td>{{ exchange.date }}</td>
+          <td>{{ convertDate(exchange.date) }}</td>
           <td v-if="exchange.type === 'deposit'" class="depo">
             {{ exchange.type }}
           </td>
@@ -32,7 +32,7 @@
             {{ exchange.type }}
           </td>
           <td v-if="exchange.approve === true">Yes</td>
-          <td v-if="exchange.approve === false">No</td>
+          <td v-if="exchange.approve === false" class="bg-warning">No</td>
           <td>{{ exchange.amount }}</td>
         </tr>
       </tbody>
@@ -45,6 +45,7 @@ import UserApi from "../store/UserApi";
 import ExchangeApiStore from "@/store/ExchangeApi";
 import Navbar from "./Navbar.vue";
 import AuthStore from "../store/AuthStore";
+import moment from "moment";
 export default {
   components: { Navbar },
   data() {
@@ -68,6 +69,7 @@ export default {
         await ExchangeApiStore.dispatch("fetchExchange");
         this.exchanges = ExchangeApiStore.getters.exchanges;
       }
+      this.sortExchange();
       this.calBalance();
     },
     deposit() {
@@ -84,6 +86,15 @@ export default {
           this.balance -= ex.amount;
         }
       });
+    },
+    sortExchange() {
+      this.exchanges.sort(function (a, b) {
+        return new Date(b.date) - new Date(a.date);
+      });
+    },
+    convertDate(date) {
+      const newDate = moment(date).format("YYYY-MM-DD h:mm:ss a");
+      return newDate;
     },
   },
 };

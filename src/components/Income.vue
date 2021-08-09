@@ -43,7 +43,7 @@ export default {
     },
     async addExchange() {
       const payload = {
-        date: new Date().toISOString(),
+        date: new Date(),
         amount: this.form.amount,
         type: "deposit",
         users: AuthStore.getters.user.id,

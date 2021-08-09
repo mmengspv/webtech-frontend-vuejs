@@ -16,7 +16,7 @@
       <tbody>
         <tr v-for="(exchange, index) in queryExchange" :key="index">
           <td>{{ index + 1 }}</td>
-          <td>{{ exchange.date }}</td>
+          <td>{{ convertDate(exchange.date) }}</td>
           <td>{{ exchange.users.username }}</td>
           <td>{{ exchange.amount }}</td>
           <td v-if="exchange.type === 'deposit'" class="depo">
@@ -37,6 +37,7 @@
 </template>
 
 <script>
+import moment from "moment";
 import Navbar from "./Navbar.vue";
 import ExchangeApi from "../store/ExchangeApi";
 export default {
@@ -68,12 +69,16 @@ export default {
         ...exchange,
         approve: true,
       };
-
       const res = await ExchangeApi.dispatch("updateExchange", payload);
       if (res.success) {
         this.$swal("Approve Success", `approve id: ${res.data.id}`, "success");
         this.$router.go();
       }
+    },
+    convertDate(date) {
+      const newDate = moment(date).format("YYYY-MM-DD h:mm:ss a");
+      console.log(newDate);
+      return newDate;
     },
   },
 };
