@@ -114,6 +114,7 @@ export default {
         type: "earn",
         point: this.pointEarn,
         user: this.id,
+        date: new Date(),
       };
       // console.log(this.point);
       let res = await PointApi.dispatch("addPoint", payload);
