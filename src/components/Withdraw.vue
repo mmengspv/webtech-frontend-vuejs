@@ -39,6 +39,12 @@ export default {
   created() {
     this.fetchUser();
   },
+  mounted() {
+    if (!this.isLoggedIn()) {
+      this.$swal("Resticted Area", "You don't have permission", "warning");
+      this.$router.push("/");
+    }
+  },
   methods: {
     async fetchUser() {
       const user = AuthStore.getters.user;
@@ -50,6 +56,9 @@ export default {
         amount: "",
         type: "",
       };
+    },
+    isLoggedIn() {
+      return AuthStore.getters.isLoggedIn;
     },
     async withdraw() {
       const withdrawNotApprove = this.currentUser.exchanges.filter(

@@ -37,6 +37,7 @@
 </template>
 
 <script>
+import AuthStore from "@/store/AuthStore"
 import moment from "moment";
 import Navbar from "./Navbar.vue";
 import ExchangeApi from "../store/ExchangeApi";
@@ -52,11 +53,20 @@ export default {
   created() {
     this.fetchExchange();
   },
+  mounted() {
+    if (!this.isLoggedIn()){
+      this.$swal("Resticted Area", "You don't have permission","warning")
+      this.$router.push("/")
+    }
+  },
   methods: {
     async fetchExchange() {
       await ExchangeApi.dispatch("fetchExchange");
       this.exchanges = ExchangeApi.getters.exchanges;
       this.queryExchangeNotApprove();
+    },
+    isLoggedIn(){
+      return AuthStore.getters.isLoggedIn
     },
     queryExchangeNotApprove() {
       this.queryExchange = this.exchanges.filter((ex) => ex.approve === false);

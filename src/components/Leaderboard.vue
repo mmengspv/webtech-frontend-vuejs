@@ -37,6 +37,7 @@
 </template>
 
 <script>
+import AuthStore from "@/store/AuthStore"
 import Navbar from "../components/Navbar.vue";
 import UserApi from "@/store/UserApi";
 export default {
@@ -50,6 +51,12 @@ export default {
       },
     };
   },
+  mounted() {
+    if (!this.isLoggedIn()){
+      this.$swal("Resticted Area", "You don't have permission","warning")
+      this.$router.push("/")
+    }
+  },
   created() {
     this.fetchUser();
   },
@@ -61,6 +68,9 @@ export default {
         (user) => user.role.type === "authenticated"
       );
       console.log(this.users);
+    },
+    isLoggedIn(){
+      return AuthStore.getters.isLoggedIn
     },
     transaction(user, type) {
       // console.log("run");

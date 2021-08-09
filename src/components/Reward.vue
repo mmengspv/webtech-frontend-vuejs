@@ -54,6 +54,7 @@
 </template>
 
 <script>
+import AuthStore from "@/store/AuthStore"
 import RewardApiStore from "@/store/RewardApi";
 import Navbar from "../components/Navbar.vue";
 export default {
@@ -64,6 +65,12 @@ export default {
       api_endpoint: process.env.VUE_APP_STRAPI_API,
     };
   },
+  mounted() {
+    if (!this.isLoggedIn()){
+      this.$swal("Resticted Area", "You don't have permission","warning")
+      this.$router.push("/")
+    }
+  },
   created() {
     this.fetchReward();
   },
@@ -71,6 +78,9 @@ export default {
     async fetchReward() {
       await RewardApiStore.dispatch("fetchReward");
       this.rewards = RewardApiStore.getters.rewards;
+    },
+    isLoggedIn(){
+      return AuthStore.getters.isLoggedIn
     },
     addReward() {
       this.$router.push("/reward/add");

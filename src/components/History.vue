@@ -26,16 +26,28 @@
 </template>
 
 <script>
+import AuthStore from "@/store/AuthStore"
 import Navbar from "../components/Navbar.vue";
 export default {
   components: {
     Navbar,
   },
+  mounted() {
+    if (!this.isLoggedIn()){
+      this.$swal("Resticted Area", "You don't have permission","warning")
+      this.$router.push("/")
+    }
+  },
   methods: {
     pointUsed() {
       this.$router.push("/used/Trade");
     },
+    isLoggedIn(){
+      return AuthStore.getters.isLoggedIn
+    },
+    
   },
+
 };
 </script>
 

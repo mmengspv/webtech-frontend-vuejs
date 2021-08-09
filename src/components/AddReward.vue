@@ -52,6 +52,7 @@
 </template>
 
 <script>
+import AuthStore from "@/store/AuthStore"
 import RewardApiStore from "@/store/RewardApi";
 import Navbar from "./Navbar.vue";
 export default {
@@ -67,7 +68,12 @@ export default {
       },
     };
   },
-
+  mounted() {
+    if (!this.isLoggedIn()){
+      this.$swal("Resticted Area", "You don't have permission","warning")
+      this.$router.push("/")
+    }
+  },
   methods: {
     clearForm() {
       this.form = {
@@ -77,6 +83,9 @@ export default {
         amount: 0,
         image: "",
       };
+    },
+    isLoggedIn(){
+      return AuthStore.getters.isLoggedIn
     },
     async addReward() {
       const formElement = document.querySelector("form");
