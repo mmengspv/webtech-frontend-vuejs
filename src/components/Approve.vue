@@ -40,6 +40,7 @@
 import moment from "moment";
 import Navbar from "./Navbar.vue";
 import ExchangeApi from "../store/ExchangeApi";
+import UserService from "../services/UserService";
 export default {
   components: { Navbar },
   data() {
@@ -71,13 +72,33 @@ export default {
       };
       const res = await ExchangeApi.dispatch("updateExchange", payload);
       if (res.success) {
+        await this.updateUserBalance(exchange);
         this.$swal("Approve Success", `approve id: ${res.data.id}`, "success");
         this.$router.go();
       }
     },
+    async updateUserBalance(exchange) {
+      const user = await UserService.getUserById(exchange.users.id);
+      console.log(user);
+      const userBalance = user.exchanges.reduce((a, b) => {
+        if (b.type === "deposit" && b.approve === true) {
+          return a + b.amount;
+        } else if (b.type === "withdraw" && b.approve === true) {
+          return a - b.amount;
+        }
+        return a;
+      }, 0);
+      const payload = {
+        ...user,
+        balance: userBalance,
+      };
+
+      console.log("userBalance", userBalance);
+      console.log("payload", payload);
+      await UserService.updateUserById(payload);
+    },
     convertDate(date) {
       const newDate = moment(date).format("YYYY-MM-DD h:mm:ss a");
-      console.log(newDate);
       return newDate;
     },
   },

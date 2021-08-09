@@ -15,14 +15,8 @@ export default {
   },
   async updateUserById(payload) {
     const url = api_endpoint + "/users/" + payload.id;
-    const body = {
-      reward_name: payload.reward_name,
-      exchange_point: payload.exchange_point,
-      detail: payload.detail,
-      image: payload.image_id,
-    };
     const headers = AuthService.getHeaders();
-    const res = await Axios.put(url, body, headers);
+    const res = await Axios.put(url, payload, headers);
     return res;
   },
   async getUserById(id) {

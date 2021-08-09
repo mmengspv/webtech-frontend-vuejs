@@ -22,18 +22,28 @@
 import Navbar from "../components/Navbar.vue";
 import ExchangeApiStore from "@/store/ExchangeApi";
 import AuthStore from "../store/AuthStore";
+import UserService from "../services/UserService";
+import moment from "moment";
 export default {
   components: { Navbar },
   data() {
     return {
+      currentUser: [],
       form: {
         date: "",
-        amount: 0,
+        amount: "",
         type: "",
       },
     };
   },
+  created() {
+    this.fetchUser();
+  },
   methods: {
+    async fetchUser() {
+      const user = AuthStore.getters.user;
+      this.currentUser = await UserService.getUserById(user.id);
+    },
     clearForm() {
       this.form = {
         date: "",
@@ -42,19 +52,40 @@ export default {
       };
     },
     async withdraw() {
-      const payload = {
-        date: new Date().toISOString(),
-        amount: this.form.amount,
-        type: "withdraw",
-        users: AuthStore.getters.user.id,
-        balance: 0,
-      };
-      const res = await ExchangeApiStore.dispatch("addExchange", payload);
-      if (res.success) {
-        this.$swal("Withdraw success!", res.data.date, "success");
-        this.$router.push("/exchange");
+      const withdrawNotApprove = this.currentUser.exchanges.filter(
+        (ex) => ex.type === "withdraw" && ex.approve === false
+      );
+      const withdraw =
+        withdrawNotApprove.reduce((a, b) => a + b.amount, 0) +
+        Number(this.form.amount);
+
+      if (this.currentUser.balance < withdraw) {
+        this.$swal(
+          "Withdraw Failed",
+          `Money is not enough Please check you money \nand withdraw waiting for approve`,
+          "error"
+        );
       } else {
-        this.$swal("Withdraw Failed", res.message, "error");
+        const payload = {
+          date: new Date(),
+          amount: this.form.amount,
+          type: "withdraw",
+          users: AuthStore.getters.user.id,
+          balance: 0,
+        };
+        const res = await ExchangeApiStore.dispatch("addExchange", payload);
+        if (res.success) {
+          this.$swal(
+            "Withdraw success!",
+            `Waiting admin approve ${moment(res.data.date).format(
+              "YYYY-MM-DD h:mm:ss"
+            )}`,
+            "success"
+          );
+          this.$router.push("/exchange");
+        } else {
+          this.$swal("Withdraw Failed", res.message, "error");
+        }
       }
     },
   },
