@@ -19,6 +19,11 @@
             </button>
           </li>
           <li v-if="isLoggedIn()" class="nav-item active">
+            <button type="button" @click="approve()" class="btn btn-dark">
+              Approve
+            </button>
+          </li>
+          <li v-if="isLoggedIn()" class="nav-item active">
             <button type="button" @click="leaderboard()" class="btn btn-dark">
               Leaderboard
             </button>
@@ -90,6 +95,10 @@ export default {
     randomPoint() {
       if (window.location.pathname === "/randompoint") this.$router.go();
       else this.$router.push("/randompoint");
+    },
+    approve() {
+      if (window.location.pathname === "/approve") this.$router.go();
+      else this.$router.push("/approve");
     },
     isLoggedIn() {
       return AuthStore.getters.isLoggedIn;
