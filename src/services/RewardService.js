@@ -27,8 +27,10 @@ export default {
       reward_name: payload.reward_name,
       exchange_point: payload.exchange_point,
       detail: payload.detail,
+      amount: payload.amount,
       image: payload.image_id,
     };
+    console.log(url);
     const headers = AuthService.getHeaders();
     const res = await Axios.put(url, body, headers);
     return res;

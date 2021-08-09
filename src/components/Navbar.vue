@@ -23,6 +23,11 @@
               Leaderboard
             </button>
           </li>
+          <li v-if="isLoggedIn()" class="nav-item active ml-1">
+            <button type="button" @click="tradepoint()" class="btn btn-dark">
+              trade point
+            </button>
+          </li>
         </ul>
       </div>
       <b-navbar-nav v-if="isLoggedIn()" class="nav-item">
@@ -66,29 +71,33 @@ export default {
     this.isLoggedIn();
   },
   methods: {
-    home() {
+    home(){
       if (window.location.pathname === "/") this.$router.go();
       else this.$router.push("/");
     },
-    reward() {
+    reward(){
       if (window.location.pathname === "/reward") this.$router.go();
       else this.$router.push("/reward");
     },
-    exchange() {
+    exchange(){
       if (window.location.pathname === "/exchange") this.$router.go();
       else this.$router.push("/exchange");
     },
-    leaderboard() {
+    leaderboard(){
       if (window.location.pathname === "/leaderboard") this.$router.go();
       else this.$router.push("/leaderboard");
     },
-    isLoggedIn() {
+    tradepoint(){
+      if (window.location.pathname === "/used/trade") this.$router.go();
+      else this.$router.push("/used/trade");
+    },
+    isLoggedIn(){
       return AuthStore.getters.isLoggedIn;
     },
-    login() {
+    login(){
       this.$router.push("/login");
     },
-    register() {
+    register(){
       this.$router.push("/register");
     },
     async logout() {

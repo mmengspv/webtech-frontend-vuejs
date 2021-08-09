@@ -14,7 +14,7 @@
             <h5 class="card-title">{{ reward.reward_name }}</h5>
             <h6 class="card-subtitle">{{reward.exchange_point}} Point</h6>
             <p class="card-text">{{ reward.detail }}</p>
-            <button>Use Point</button>
+            <button @click="editPoint(reward)">Use Point</button>
           </div>
         </div>
       </div>
@@ -27,6 +27,10 @@
 <script>
 import Navbar from '../components/Navbar.vue';
 import RewardApiStore from "@/store/RewardApi";
+import AuthStore from '@/store/AuthStore'
+import UserApi from '@/store/UserApi'
+import UserService from '@/services/UserService'
+import PointApi from '@/store/PointApi'
 export default {
   components: {
     Navbar
@@ -34,29 +38,53 @@ export default {
   data() {
     return {
       rewards: [],
-      api_endpoint: process.env.VUE_APP_STRAPI_API,
       users:[],
+      api_endpoint: process.env.VUE_APP_STRAPI_API,
+      user_id:'',
     };
   },
   created() {
-    this.fetchReward();
+    this.fetchData();
+    this.thisUser()
   },
   methods: {
-    async fetchReward() {
+    async fetchData(){
       await RewardApiStore.dispatch("fetchReward");
       this.rewards = RewardApiStore.getters.rewards;
+      await UserApi.dispatch("fetchUser")
+      this.users = UserApi.getters.users
     },
-    async editPoint() {
-      let payload = {
-        index: this.id,
-        point: this.point,
+    async editPoint(reward) {
+      const user = await UserService.getUserById(this.user_id);
+      let payload_user = {
+        index: this.user_id,
+        point: user.point-reward.exchange_point,
       };
-      let res = await UserApi.dispatch("editPoint", payload);
-      if (res.success) {
-      } else {
-        this.$swal("Add Failed", res.message, "error");
-      }
-    }
+      await UserApi.dispatch("updatePoint", payload_user);
+      let payload_point = {
+        type: "use",
+        point: reward.exchange_point,
+        user: this.user_id,
+      };
+      // console.log(this.point);
+      await PointApi.dispatch("addPoint", payload_point);
+      let payload_reward = {
+        id:reward.id,
+        reward_name: reward.reward_name,
+        exchange_point: reward.exchange_point,
+        detail: reward.detail,
+        amount: reward.amount-1,
+        image: reward.image_id,
+      };
+      await RewardApiStore.dispatch("editReward", payload_reward);
+    },
+    async thisUser(){
+      
+      this.user_id = AuthStore.getters.user.id
+      
+    },
+    
+
   },
 };
 </script>
