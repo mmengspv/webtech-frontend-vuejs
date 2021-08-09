@@ -57,7 +57,10 @@ export default {
     async fetchUser() {
       await UserApi.dispatch("fetchUser");
       this.users = UserApi.getters.users;
-      // console.log(this.users);
+      this.users = this.users.filter(
+        (user) => user.role.type === "authenticated"
+      );
+      console.log(this.users);
     },
     transaction(user, type) {
       // console.log("run");
@@ -74,7 +77,7 @@ export default {
           Date.parse(u.date) >= start &&
           (this.date.end == "" ||
             (this.date.end != "" &&
-              Date.parse(this.date.end) >= Date.parse(u.date)))
+              Date.parse(this.date.end) + 86400000 >= Date.parse(u.date)))
         ) {
           console.log(Date.parse(u.date));
           console.log(start);

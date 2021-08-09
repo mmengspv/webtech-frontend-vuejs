@@ -58,6 +58,9 @@ export default {
     async fetchUser() {
       await UserApi.dispatch("fetchUser");
       this.users = UserApi.getters.users;
+      this.users = this.users.filter(
+        (user) => user.role.type === "authenticated"
+      );
     },
     random() {
       if (this.count >= 5) {
@@ -73,21 +76,21 @@ export default {
         this.id = lucky.id;
         if (this.count == 0) {
           this.lucky_user5 = lucky.username;
-          this.pointEarn = lucky.balance * 0.1;
+          this.pointEarn = lucky.balance * 0.01;
         } else if (this.count == 1) {
           this.lucky_user4 = lucky.username;
-          this.pointEarn = lucky.balance * 0.1;
+          this.pointEarn = lucky.balance * 0.01;
           this.prize = "random third prize";
         } else if (this.count == 2) {
-          this.pointEarn = lucky.balance * 0.25;
+          this.pointEarn = lucky.balance * 0.025;
           this.lucky_user3 = lucky.username;
           this.prize = "random second prize";
         } else if (this.count == 3) {
-          this.pointEarn = lucky.balance * 0.3;
+          this.pointEarn = lucky.balance * 0.03;
           this.lucky_user2 = lucky.username;
           this.prize = "random first prize";
         } else if (this.count == 4) {
-          this.pointEarn = lucky.balance * 0.5;
+          this.pointEarn = lucky.balance * 0.05;
           this.lucky_user1 = lucky.username;
           this.prize = "view summary";
           this.btn = "view";
