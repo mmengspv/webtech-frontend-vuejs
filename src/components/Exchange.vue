@@ -14,6 +14,7 @@
           <th v-if="user.role['type'] === 'admin'">Username</th>
           <th>Date</th>
           <th>Type</th>
+          <th>Approve</th>
           <th>Amount</th>
         </tr>
       </thead>
@@ -30,6 +31,8 @@
           <td v-if="exchange.type === 'withdraw'" class="wd">
             {{ exchange.type }}
           </td>
+          <td v-if="exchange.approve === true">Yes</td>
+          <td v-if="exchange.approve === false">No</td>
           <td>{{ exchange.amount }}</td>
         </tr>
       </tbody>
@@ -75,9 +78,9 @@ export default {
     },
     calBalance() {
       this.exchanges.forEach((ex) => {
-        if (ex.type === "deposit") {
+        if (ex.type === "deposit" && ex.approve === true) {
           this.balance += ex.amount;
-        } else if (ex.type === "withdraw") {
+        } else if (ex.type === "withdraw" && ex.approve === true) {
           this.balance -= ex.amount;
         }
       });
