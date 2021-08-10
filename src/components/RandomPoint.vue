@@ -109,17 +109,18 @@ export default {
           this.prize = "view summary";
           this.btn = "view";
         }
-        this.point = lucky.point + this.pointEarn;
-        console.log(this.point);
+
+        lucky.point += this.pointEarn;
+        this.editPoint(lucky.point);
         this.addPoint();
         await this.editPoint();
-        this.count += 1;
       }
+      this.count += 1;
     },
-    async editPoint() {
+    async editPoint(point) {
       let payload = {
         index: this.id,
-        point: this.point,
+        point: point,
       };
       let res = await UserApi.dispatch("editPoint", payload);
       if (res.success) {

@@ -73,7 +73,6 @@ export default {
   },
   created() {
     this.fetchData();
-    this.board();
   },
   methods: {
     async fetchData() {

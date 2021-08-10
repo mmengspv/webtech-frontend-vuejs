@@ -28,15 +28,14 @@ export default new Vuex.Store({
       commit("fetch", { res });
     },
     async addPoint({ commit }, payload) {
-      try {
-        const res = await PointService.create(payload);
-        console.log("res", res);
+      const res = await PointService.create(payload);
+      if (res.status === 200) {
         commit("add", res.data);
         return {
           success: true,
           data: res.data,
         };
-      } catch (e) {
+      } else {
         return {
           success: false,
           message: "Error: " + res.status,
