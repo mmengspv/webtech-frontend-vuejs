@@ -12,6 +12,7 @@ and clone the website follow the recommendations on that repository.
 ## Project setup
 ```
 npm install
+npm install --save moment
 ```
 ### Compiles and hot-reloads for development
 ```
