@@ -14,6 +14,7 @@
             <h5 class="card-title">{{ reward.reward_name }}</h5>
             <h6 class="card-subtitle">{{ reward.exchange_point }} Point</h6>
             <p class="card-text">{{ reward.detail }}</p>
+            <p>Remain: {{ reward.amount }}</p>
             <button @click="editPoint(reward)">Use Point</button>
           </div>
         </div>
@@ -42,9 +43,9 @@ export default {
     };
   },
   mounted() {
-    if (!this.isLoggedIn()){
-      this.$swal("Resticted Area", "You don't have permission","warning")
-      this.$router.push("/")
+    if (!this.isLoggedIn()) {
+      this.$swal("Resticted Area", "You don't have permission", "warning");
+      this.$router.push("/");
     }
   },
   created() {
@@ -58,8 +59,8 @@ export default {
       await UserApi.dispatch("fetchUser");
       this.users = UserApi.getters.users;
     },
-    isLoggedIn(){
-      return AuthStore.getters.isLoggedIn
+    isLoggedIn() {
+      return AuthStore.getters.isLoggedIn;
     },
     async editPoint(reward) {
       if (reward.amount > 0) {

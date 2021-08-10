@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import AuthStore from "@/store/AuthStore"
+import AuthStore from "@/store/AuthStore";
 import UserApi from "@/store/UserApi";
 import PointApi from "@/store/PointApi";
 import Navbar from "../components/Navbar.vue";
@@ -55,10 +55,10 @@ export default {
   created() {
     this.fetchUser();
   },
-   mounted() {
-    if (!this.isLoggedIn()){
-      this.$swal("Resticted Area", "You don't have permission","warning")
-      this.$router.push("/")
+  mounted() {
+    if (!this.isLoggedIn()) {
+      this.$swal("Resticted Area", "You don't have permission", "warning");
+      this.$router.push("/");
     }
   },
   methods: {
@@ -69,10 +69,10 @@ export default {
         (user) => user.role.type === "authenticated"
       );
     },
-    isLoggedIn(){
-      return AuthStore.getters.isLoggedIn
+    isLoggedIn() {
+      return AuthStore.getters.isLoggedIn;
     },
-    random() {
+    async random() {
       if (this.count >= 5) {
         this.$swal({
           title: "Score Summary",
@@ -84,6 +84,7 @@ export default {
       } else {
         let lucky = this.users[Math.floor(Math.random() * this.users.length)];
         this.id = lucky.id;
+
         if (this.count == 0) {
           this.lucky_user5 = lucky.username;
           this.pointEarn = lucky.balance * 0.01;
@@ -106,10 +107,11 @@ export default {
           this.btn = "view";
         }
         this.point = lucky.point + this.pointEarn;
-        this.editPoint();
+        console.log(this.point);
         this.addPoint();
+        await this.editPoint();
+        this.count += 1;
       }
-      this.count += 1;
     },
     async editPoint() {
       let payload = {
@@ -129,8 +131,9 @@ export default {
         user: this.id,
         date: new Date(),
       };
-      // console.log(this.point);
-      let res = await PointApi.dispatch("addPoint", payload);
+      // console.log("payload", payload);
+      // console.log(typeof payload.user);
+      await PointApi.dispatch("addPoint", payload);
     },
   },
 };

@@ -14,11 +14,13 @@ export default {
     return res;
   },
   async getAllReward() {
-    const res = await Axios.get(`${api_endpoint}/rewards`);
+    const headers = AuthService.getHeaders();
+    const res = await Axios.get(`${api_endpoint}/rewards`, headers);
     return res;
   },
   async getRewardById(id) {
-    const res = await Axios.get(`${api_endpoint}/rewards/${id}`);
+    const headers = AuthService.getHeaders();
+    const res = await Axios.get(`${api_endpoint}/rewards/${id}`, headers);
     return res.data;
   },
   async updateRewardById(payload) {

@@ -43,6 +43,11 @@
       <b-navbar-nav v-if="isLoggedIn()" class="nav-item">
         <b-icon icon="person-fill" class="person-icon middle"></b-icon>
         <b-navbar-brand class="username"></b-navbar-brand>
+        <label class="text-white">{{ user.username }}</label>
+        <label class="label text-white">Balance:</label>
+        <label class="text-white">{{ user.balance ? user.balance : 0 }}</label>
+        <label class="label text-white">Point:</label>
+        <label class="text-white">{{ user.point ? user.point : 0 }}</label>
       </b-navbar-nav>
 
       <!-- Right aligned nav items -->
@@ -75,12 +80,22 @@
 </template>
 
 <script>
+import UserService from "../services/UserService";
 import AuthStore from "../store/AuthStore";
 export default {
+  data() {
+    return {
+      user: [],
+    };
+  },
   created() {
     this.isLoggedIn();
+    this.fetchUser();
   },
   methods: {
+    fetchUser() {
+      this.user = AuthStore.getters.user;
+    },
     home() {
       if (window.location.pathname === "/") this.$router.go();
       else this.$router.push("/");
@@ -140,6 +155,9 @@ export default {
 </script>
 
 <style >
+.label {
+  margin-left: 10px;
+}
 .pb-1 {
   margin-bottom: 40px;
 }

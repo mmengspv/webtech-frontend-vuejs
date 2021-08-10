@@ -24,6 +24,10 @@
         <label>Password</label>
         <input v-model="form.password" type="password" />
       </div>
+      <div>
+        <label>confirmPassword</label>
+        <input v-model="form.confirmPassword" type="password" />
+      </div>
       <button type="submit">Register</button>
     </form>
   </div>
@@ -38,6 +42,7 @@ export default {
         username: "",
         email: "",
         password: "",
+        confirmPassword: "",
       },
     };
   },
@@ -49,16 +54,20 @@ export default {
   },
   methods: {
     async register() {
-      const res = await AuthStore.dispatch("register", this.form);
-      if (res.success) {
-        this.$swal(
-          "Register Success",
-          `Welcome, ${res.user.username} `,
-          "success"
-        );
-        this.$router.push("/");
+      if (this.form.password === this.form.confirmPassword) {
+        const res = await AuthStore.dispatch("register", this.form);
+        if (res.success) {
+          this.$swal(
+            "Register Success",
+            `Welcome, ${res.user.username} `,
+            "success"
+          );
+          this.$router.push("/");
+        } else {
+          this.$swal("Register Failed", res.message, "error");
+        }
       } else {
-        this.$swal("Register Failed", res.message, "error");
+        this.$swal("Register Failed", "Please check your password", "error");
       }
     },
     isLoggedIn() {

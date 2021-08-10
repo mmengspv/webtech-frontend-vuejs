@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import AuthStore from "@/store/AuthStore"
+import AuthStore from "@/store/AuthStore";
 import Navbar from "../components/Navbar.vue";
 import UserApi from "@/store/UserApi";
 export default {
@@ -52,9 +52,9 @@ export default {
     };
   },
   mounted() {
-    if (!this.isLoggedIn()){
-      this.$swal("Resticted Area", "You don't have permission","warning")
-      this.$router.push("/")
+    if (!this.isLoggedIn()) {
+      this.$swal("Resticted Area", "You don't have permission", "warning");
+      this.$router.push("/");
     }
   },
   created() {
@@ -67,10 +67,10 @@ export default {
       this.users = this.users.filter(
         (user) => user.role.type === "authenticated"
       );
-      console.log(this.users);
+      console.log("user", this.users);
     },
-    isLoggedIn(){
-      return AuthStore.getters.isLoggedIn
+    isLoggedIn() {
+      return AuthStore.getters.isLoggedIn;
     },
     transaction(user, type) {
       // console.log("run");
@@ -89,8 +89,6 @@ export default {
             (this.date.end != "" &&
               Date.parse(this.date.end) + 86400000 >= Date.parse(u.date)))
         ) {
-          console.log(Date.parse(u.date));
-          console.log(start);
           return u.point;
         }
         return 0;
