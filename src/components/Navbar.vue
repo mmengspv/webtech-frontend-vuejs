@@ -3,22 +3,22 @@
     <b-navbar toggleable="lg" type="dark" variant="dark">
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
+          <li class="nav-item active mr-2">
             <button type="button" @click="home()" class="btn btn-dark">
               Home
             </button>
           </li>
-          <li v-if="isLoggedIn()" class="nav-item active ml-2">
+          <li v-if="isAdmin()" class="nav-item active">
             <button type="button" @click="reward()" class="btn btn-dark">
               Reward
             </button>
           </li>
-          <li v-if="isLoggedIn()" class="nav-item active">
+          <li v-if="isUser()" class="nav-item active">
             <button type="button" @click="exchange()" class="btn btn-dark">
               Deposit&withdraw
             </button>
           </li>
-          <li v-if="isLoggedIn()" class="nav-item active">
+          <li v-if="isAdmin()" class="nav-item active">
             <button type="button" @click="approve()" class="btn btn-dark">
               Approve
             </button>
@@ -28,12 +28,17 @@
               Trade point
             </button>
           </li>
+          <li v-if="isUser()" class="nav-item active">
+            <button type="button" @click="history()" class="btn btn-dark">
+              History
+            </button>
+          </li>
           <li v-if="isLoggedIn()" class="nav-item active">
             <button type="button" @click="leaderboard()" class="btn btn-dark">
               Leaderboard
             </button>
           </li>
-          <li v-if="isLoggedIn()" class="nav-item active">
+          <li v-if="isAdmin()" class="nav-item active">
             <button type="button" @click="randomPoint()" class="btn btn-dark">
               Randompoint
             </button>
@@ -96,6 +101,22 @@ export default {
     fetchUser() {
       this.user = AuthStore.getters.user;
     },
+    isAdmin() {
+      if (this.isLoggedIn()) {
+        if (this.user.role.type === "admin") {
+          return true;
+        }
+      }
+      return false;
+    },
+    isUser() {
+      if (this.isLoggedIn()) {
+        if (this.user.role.type === "authenticated") {
+          return true;
+        }
+      }
+      return false;
+    },
     home() {
       if (window.location.pathname === "/") this.$router.go();
       else this.$router.push("/");
@@ -111,6 +132,10 @@ export default {
     tradepoint() {
       if (window.location.pathname === "/used/trade") this.$router.go();
       else this.$router.push("/used/trade");
+    },
+    history() {
+      if (window.location.pathname === "/used") this.$router.go();
+      else this.$router.push("/used");
     },
     leaderboard() {
       if (window.location.pathname === "/leaderboard") this.$router.go();
@@ -162,8 +187,8 @@ export default {
   margin-bottom: 40px;
 }
 
-.ml-2 {
-  margin-left: 120px;
+.mr-2 {
+  margin-right: 120px;
 }
 .ml-auto {
   margin-left: auto;

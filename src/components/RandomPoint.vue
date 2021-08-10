@@ -56,8 +56,8 @@ export default {
     this.fetchUser();
   },
   mounted() {
-    if (!this.isLoggedIn()) {
-      this.$swal("Resticted Area", "You don't have permission", "warning");
+    if (!(this.isAdmin() === "admin")) {
+      this.$swal("Resticted Area", "You doesn't Admin", "warning");
       this.$router.push("/");
     }
   },
@@ -71,6 +71,9 @@ export default {
     },
     isLoggedIn() {
       return AuthStore.getters.isLoggedIn;
+    },
+    isAdmin() {
+      return AuthStore.getters.isAdmin;
     },
     async random() {
       if (this.count >= 5) {
