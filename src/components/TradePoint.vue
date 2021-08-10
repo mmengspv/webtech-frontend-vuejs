@@ -77,6 +77,7 @@ export default {
             point: reward.exchange_point,
             date: today,
             user: this.user_id,
+            reward: reward.id,
           };
           // console.log(this.point);
           await PointApi.dispatch("addPoint", payload_point);

@@ -34,9 +34,9 @@ export default {
     };
   },
   mounted() {
-    if (!this.isLoggedIn()){
-      this.$swal("Resticted Area", "You don't have permission","warning")
-      this.$router.push("/")
+    if (!this.isLoggedIn()) {
+      this.$swal("Resticted Area", "You don't have permission", "warning");
+      this.$router.push("/");
     }
   },
   methods: {
@@ -47,8 +47,8 @@ export default {
         type: "",
       };
     },
-    isLoggedIn(){
-      return AuthStore.getters.isLoggedIn
+    isLoggedIn() {
+      return AuthStore.getters.isLoggedIn;
     },
     async addExchange() {
       const payload = {

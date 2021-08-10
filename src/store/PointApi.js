@@ -31,16 +31,16 @@ export default new Vuex.Store({
       try {
         const res = await PointService.create(payload);
         console.log("res", res);
-        // commit("add", res.data);
-        // return {
-        //   success: true,
-        //   data: res.data,
-        // };
+        commit("add", res.data);
+        return {
+          success: true,
+          data: res.data,
+        };
       } catch (e) {
-        // return {
-        //   success: false,
-        //   message: "Error: " + res.status,
-        // };
+        return {
+          success: false,
+          message: "Error: " + res.status,
+        };
       }
     },
   },

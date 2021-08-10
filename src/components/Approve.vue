@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import AuthStore from "@/store/AuthStore"
+import AuthStore from "@/store/AuthStore";
 import moment from "moment";
 import Navbar from "./Navbar.vue";
 import ExchangeApi from "../store/ExchangeApi";
@@ -54,9 +54,9 @@ export default {
     this.fetchExchange();
   },
   mounted() {
-    if(!(this.isAdmin() === "admin")){
-    this.$swal("Resticted Area", "You doesn't Admin","warning")
-    this.$router.push("/") 
+    if (!(this.isAdmin() === "admin")) {
+      this.$swal("Resticted Area", "You doesn't Admin", "warning");
+      this.$router.push("/");
     }
   },
   methods: {
@@ -65,11 +65,11 @@ export default {
       this.exchanges = ExchangeApi.getters.exchanges;
       this.queryExchangeNotApprove();
     },
-    isLoggedIn(){
-      return AuthStore.getters.isLoggedIn
+    isLoggedIn() {
+      return AuthStore.getters.isLoggedIn;
     },
-    isAdmin(){
-      return AuthStore.getters.isAdmin
+    isAdmin() {
+      return AuthStore.getters.isAdmin;
     },
     queryExchangeNotApprove() {
       this.queryExchange = this.exchanges.filter((ex) => ex.approve === false);

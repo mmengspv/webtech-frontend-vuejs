@@ -57,15 +57,15 @@ export default {
     };
   },
   mounted() {
-    if (!this.isLoggedIn()){
-      this.$swal("Resticted Area", "You don't have permission","warning")
-      this.$router.push("/")
+    if (!this.isLoggedIn()) {
+      this.$swal("Resticted Area", "You don't have permission", "warning");
+      this.$router.push("/");
     }
   },
   created() {
     this.fetchExchange();
   },
-  
+
   methods: {
     async fetchExchange() {
       this.user = AuthStore.getters.user;
@@ -79,8 +79,8 @@ export default {
       this.sortExchange();
       this.calBalance();
     },
-    isLoggedIn(){
-      return AuthStore.getters.isLoggedIn
+    isLoggedIn() {
+      return AuthStore.getters.isLoggedIn;
     },
     deposit() {
       this.$router.push("/exchange/income");
