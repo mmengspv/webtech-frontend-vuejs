@@ -5,9 +5,9 @@ Deposit & Withdraw the moneys to gain point for trade rewards
 - 6210406734 Supavet Amornruksakul
 - 6210406769 Itsaraphap Sakulwong
 
-## The first to do everything 
-you should go to the website [webtech backend strapi](https://github.com/mmengspv/webtech-backend-strapi)
-and clone the website follow the recommendations on that repository.
+## ขั้นตอนแรกสุด
+เข้าไปที่ลิงค์นี้ [webtech backend strapi](https://github.com/mmengspv/webtech-backend-strapi)
+และโคลนเว็บไซต์ตามที่ repositoty นั้นแนะนำ
 
 ## Project setup
 ```
