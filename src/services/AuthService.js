@@ -17,6 +17,9 @@ export default {
   isLoggedIn() {
     return user !== "" && jwt !== "" ? true : false;
   },
+  isAdmin() {
+    return user.role.type === "admin";
+  },
   getHeaders() {
     if (jwt !== "") {
       return {

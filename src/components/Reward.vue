@@ -1,5 +1,6 @@
 <template>
   <div class="reward">
+    <form @submit.prevent="fetchReward">
     <navbar></navbar>
     <h3>Reward</h3>
     <button @click="addReward">Add reward</button>
@@ -50,6 +51,7 @@
         </tr>
       </tbody>
     </table>
+    </form>
   </div>
 </template>
 
@@ -66,9 +68,9 @@ export default {
     };
   },
   mounted() {
-    if (!this.isLoggedIn()){
-      this.$swal("Resticted Area", "You don't have permission","warning")
-      this.$router.push("/")
+  if(!(this.isAdmin() === "admin")){
+    this.$swal("Resticted Area", "You doesn't Admin","warning")
+    this.$router.push("/") 
     }
   },
   created() {
@@ -79,9 +81,12 @@ export default {
       await RewardApiStore.dispatch("fetchReward");
       this.rewards = RewardApiStore.getters.rewards;
     },
-    isLoggedIn(){
-      return AuthStore.getters.isLoggedIn
+    isLoggedIn() {
+      return AuthStore.getters.isLoggedIn;
     },
+    isAdmin() {
+    return AuthStore.getters.isAdmin;
+  },
     addReward() {
       this.$router.push("/reward/add");
     },

@@ -53,9 +53,9 @@ export default {
     this.fetchExchange();
   },
   mounted() {
-    if (!this.isLoggedIn()){
-      this.$swal("Resticted Area", "You don't have permission","warning")
-      this.$router.push("/")
+    if(!(this.isAdmin() === "admin")){
+    this.$swal("Resticted Area", "You doesn't Admin","warning")
+    this.$router.push("/") 
     }
   },
   methods: {
@@ -66,6 +66,9 @@ export default {
     },
     isLoggedIn(){
       return AuthStore.getters.isLoggedIn
+    },
+    isAdmin(){
+      return AuthStore.getters.isAdmin
     },
     queryExchangeNotApprove() {
       this.queryExchange = this.exchanges.filter((ex) => ex.approve === false);

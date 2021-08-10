@@ -48,7 +48,7 @@ export default {
         this.$swal(
           "Login Success",
           `Welcome, ${res.user.username} `,
-          "success"
+          "success" 
         );
         this.$router.push("/");
       } else {

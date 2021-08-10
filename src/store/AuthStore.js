@@ -19,13 +19,14 @@ export default new Vuex.Store({
     user: (state) => state.user,
     jwt: (state) => state.jwt,
     isLoggedIn: (state) => state.isLoggedIn,
+    isAdmin: (state) => state.user.role.type
   },
   mutations: {
     loginSuccess(state, res) {
       state.user = res.user;
       state.jwt = res.jwt;
       state.isLoggedIn = res.success;
-      //   console.log(state);
+      console.log(state);
     },
     logoutSuccess(state) {
       state.user = "";
