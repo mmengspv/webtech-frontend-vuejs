@@ -1,29 +1,8 @@
 <template>
   <div>
     <navbar></navbar>
-    <div class="pt-1">
+    <div class="pt-1 bg-home">
       <h1>WELCOME!</h1>
-      <div class="history">
-        <h3>history</h3>
-        <table class="history-table">
-          <thead>
-            <tr>
-              <th></th>
-              <th>date</th>
-              <th>Point</th>
-              <th>Reward</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>ไม่ระบุ</td>
-              <td>ไม่ระบุ</td>
-              <td>ไม่ระบุ</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
 
       <div>
         <b-carousel
@@ -42,11 +21,6 @@
             </template>
           </b-carousel-slide>
         </b-carousel>
-      </div>
-      <div class="point">
-        <h3>Point:</h3>
-        <h3 v-if="islogin()">{{ userpoint }}</h3>
-        <h3 v-if="!islogin()">Please login or register</h3>
       </div>
     </div>
   </div>
@@ -96,6 +70,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+.bg-home {
+  background-color: greenyellow;
+}
 .pt-1 {
   padding-top: 40px;
 }
