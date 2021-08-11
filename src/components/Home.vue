@@ -50,11 +50,10 @@ export default {
   },
   methods: {
     async fetchData() {
-      if (this.islogin()) {
-        this.userpoint = AuthStore.getters.user.point;
+      if (AuthStore.getters.isLoggedIn) {
+        await UserApi.dispatch("fetchUser");
+        this.users = UserApi.getters.users;
       }
-      await UserApi.dispatch("fetchUser");
-      this.users = UserApi.getters.users;
       await RewardApiStore.dispatch("fetchReward");
       const rewards = RewardApiStore.getters.rewards;
       for (let i = 0; i < rewards.length && i < 4; i++) {
@@ -70,9 +69,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-.bg-home {
-  background-color: greenyellow;
-}
 .pt-1 {
   padding-top: 40px;
 }

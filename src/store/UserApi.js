@@ -22,8 +22,7 @@ export default new Vuex.Store({
   },
   actions: {
     async fetchUser({ commit }) {
-      const headers = AuthService.getHeaders();
-      let res = await Axios.get(api_endpoint + "/users", headers);
+      let res = await Axios.get(api_endpoint + "/users");
       commit("fetch", { res });
     },
     async fetchUserById({ commit }, id) {

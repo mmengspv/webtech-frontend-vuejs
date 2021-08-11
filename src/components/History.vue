@@ -10,8 +10,7 @@
           <th>Date</th>
           <th>Type</th>
           <th>Amount</th>
-          <th>Reward Name</th>
-          <th>Reward Image</th>
+          <th>Reward Id</th>
         </tr>
       </thead>
       <tbody>
@@ -20,15 +19,8 @@
           <td>{{ convertDate(tran.date) }}</td>
           <td>{{ tran.type }}</td>
           <td>{{ tran.point }}</td>
-          <td v-if="tran.reward === null"></td>
-          <td v-if="tran.reward !== null">{{ rewardName(tran) }}</td>
-          <td v-if="tran.reward === null"></td>
-          <img
-            v-if="tran.reward !== null"
-            class="card-img-top"
-            :src="rewardImg(tran)"
-            height="200px"
-          />
+          <td v-if="tran.reward === null">-</td>
+          <td v-if="tran.reward !== null">{{ tran.reward }}</td>
         </tr>
       </tbody>
     </table>
@@ -48,6 +40,7 @@ export default {
   data() {
     return {
       currentUser: [],
+      reward: [],
       transactions: [],
       api_endpoint: process.env.VUE_APP_STRAPI_API,
     };
@@ -64,17 +57,6 @@ export default {
         AuthStore.getters.user.id
       );
       this.transactions = this.currentUser.transaction_point;
-      // console.log("trans", this.transactions);
-    },
-    async rewardName(transaction) {
-      const a = await RewardService.getRewardById(transaction.reward);
-      // console.log(a.reward_name);
-      return a.reward_name;
-    },
-    async rewardImg(transaction) {
-      const a = await RewardService.getRewardById(transaction.reward);
-      // console.log(a);
-      return this.api_endpoint + a.image[0].url;
     },
     convertDate(date) {
       const newDate = moment(date).format("YYYY-MM-DD h:mm:ss a");
